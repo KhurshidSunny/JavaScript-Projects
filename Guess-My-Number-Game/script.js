@@ -3,7 +3,7 @@
 const checkButton = document.querySelector('.check');
 const againButton = document.querySelector('.again');
 const message = document.querySelector('.message');
-const guessNumber = document.querySelector('.guess');
+let guessNumberInput = document.querySelector('.guess');
 const number = document.querySelector('.number');
 const score = document.querySelector('.score');
 const highscore = document.querySelector('.highscore');
@@ -17,12 +17,13 @@ function generateRandomNumber() {
   return randomNumber;
 }
 
+const secretNumber = generateRandomNumber();
 function resetGame() {
   checkButton.disabled = false;
   checkButton.style.cursor = 'pointer';
   number.textContent = '?';
   message.textContent = 'start guessing...';
-  guessNumber.value = '';
+  guessNumberInput.value = '';
   currentScore = 20;
   score.innerHTML = currentScore;
   highscore.innerHTML = currentHighScore;
@@ -30,27 +31,36 @@ function resetGame() {
 }
 
 function eventHandler() {
-  const randomNumberCheck = generateRandomNumber();
-  guessNumber.value = randomNumberCheck;
-  const randomNumberCorrect = generateRandomNumber();
-  randomNumberCheck === randomNumberCorrect
-    ? (number.innerHTML = randomNumberCorrect)
-    : '?';
+  const guessNumber = Number(guessNumberInput.value);
 
-  if (randomNumberCheck > randomNumberCorrect) {
-    message.textContent = 'Too High';
-    currentScore--;
-  } else if (randomNumberCheck === randomNumberCorrect) {
+  guessNumber === secretNumber ? (number.innerHTML = secretNumber) : '?';
+
+  // When there is No input
+  if (!guessNumber) {
+    message.textContent = 'No Number';
+  }
+  // When the the player wins the game
+  else if (guessNumber === secretNumber) {
     message.textContent = 'Correct Number';
     document.body.style.backgroundColor = '#60b347';
     checkButton.disabled = true;
     checkButton.style.cursor = 'none';
+    number.style.width = '30rem';
     currentHighScore > currentScore
       ? (currentHighScore = currentHighScore)
       : (currentHighScore = currentScore);
-  } else if (randomNumberCheck < randomNumberCorrect) {
-    message.textContent = 'Too Low';
-    currentScore--;
+  }
+  // When the guess number is different from secrent nummber
+  else if (guessNumber !== secretNumber) {
+    guessNumber > secretNumber
+      ? (message.textContent = 'Too High')
+      : (message.textContent = 'Too low');
+    if (currentScore < 1) {
+      message.textContent = 'You Lost the game';
+      currentScore = 20;
+    } else {
+      currentScore--;
+    }
   }
 
   score.innerHTML = currentScore;
