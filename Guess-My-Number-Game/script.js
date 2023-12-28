@@ -10,7 +10,6 @@ const highscore = document.querySelector('.highscore');
 
 let currentScore = Number(score.textContent);
 let currentHighScore = Number(highscore.textContent);
-let oldHighScore = currentHighScore;
 
 // Generate random numbers from 1 to 20
 function generateRandomNumber() {
@@ -24,12 +23,10 @@ function resetGame() {
   number.textContent = '?';
   message.textContent = 'start guessing...';
   guessNumber.value = '';
-  currentScore = 0;
+  currentScore = 20;
   score.innerHTML = 0;
+  highscore.innerHTML = currentHighScore;
   document.body.style = '#222';
-  currentHighScore > oldHighScore
-    ? (highscore.innerHTML = currentHighScore)
-    : (highscore.innerHTML = oldHighScore);
 }
 
 function eventHandler() {
@@ -43,7 +40,9 @@ function eventHandler() {
   if (randomNumberCheck !== randomNumberCorrect) {
     currentScore--;
   } else {
-    currentHighScore = currentScore;
+    currentHighScore > currentScore
+      ? (currentHighScore = currentHighScore)
+      : (currentHighScore = currentScore);
   }
 
   const differnce = randomNumberCheck - randomNumberCorrect;
