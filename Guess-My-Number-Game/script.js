@@ -24,7 +24,7 @@ function resetGame() {
   message.textContent = 'start guessing...';
   guessNumber.value = '';
   currentScore = 20;
-  score.innerHTML = 0;
+  score.innerHTML = currentScore;
   highscore.innerHTML = currentHighScore;
   document.body.style = '#222';
 }
@@ -37,24 +37,20 @@ function eventHandler() {
     ? (number.innerHTML = randomNumberCorrect)
     : '?';
 
-  if (randomNumberCheck !== randomNumberCorrect) {
-    currentScore--;
-  } else {
-    currentHighScore > currentScore
-      ? (currentHighScore = currentHighScore)
-      : (currentHighScore = currentScore);
-  }
-
-  const differnce = randomNumberCheck - randomNumberCorrect;
-  if (differnce > 4) {
+  if (randomNumberCheck > randomNumberCorrect) {
     message.textContent = 'Too High';
-  } else if (differnce === 0) {
+    currentScore--;
+  } else if (randomNumberCheck === randomNumberCorrect) {
     message.textContent = 'Correct Number';
     document.body.style.backgroundColor = '#60b347';
     checkButton.disabled = true;
     checkButton.style.cursor = 'none';
-  } else if (differnce < 4 && differnce !== 0) {
+    currentHighScore > currentScore
+      ? (currentHighScore = currentHighScore)
+      : (currentHighScore = currentScore);
+  } else if (randomNumberCheck < randomNumberCorrect) {
     message.textContent = 'Too Low';
+    currentScore--;
   }
 
   score.innerHTML = currentScore;
