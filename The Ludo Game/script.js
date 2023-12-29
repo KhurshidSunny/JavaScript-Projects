@@ -13,15 +13,22 @@ const btnNew = document.querySelector('.btn--new');
 const btnHold = document.querySelector('.btn--hold');
 const diceEl = document.querySelector('.dice');
 
-diceEl.classList.add('hidden');
-
+const scores = [90, 90];
+let activePlayer = 0;
+let currentScore = Number(current0El.textContent);
 score0El.textContent = 0;
 score1El.textContent = 0;
-let activePlayer = 0;
 
-let currentScore = Number(current0El.textContent);
+diceEl.classList.add('hidden');
 
-// Event Handler functions
+function switchPlayer() {
+  document.getElementById(`current--${activePlayer}`).textContent = 0;
+  activePlayer = activePlayer === 0 ? 1 : 0;
+  currentScore = 0;
+
+  player0El.classList.toggle('player--active');
+  player1El.classList.toggle('player--active');
+}
 
 // Roll dice function
 function rollDice() {
@@ -33,32 +40,32 @@ function rollDice() {
   diceEl.src = `dice-${dice}.png`;
 
   // Check for 1
-
   if (dice !== 1) {
     currentScore += dice;
-    // 1. way
-    // activePlayer === 0
-    //   ? (current0El.textContent = currentScore)
-    //   : (current1El.textContent = currentScore);
-
     // 2. select element dynamically
     document.getElementById(`current--${activePlayer}`).textContent =
       currentScore;
   } else {
     // Switch player
-
-    // activePlayer === 0
-    //   ? (current0El.textContent = 0)
-    //   : (current1El.textContent = 0);
-    document.getElementById(`current--${activePlayer}`).textContent = 0;
-    activePlayer = activePlayer === 0 ? 1 : 0;
-    currentScore = 0;
-
-    player0El.classList.toggle('player--active');
-    player1El.classList.toggle('player--active');
+    switchPlayer();
   }
 }
 
 btnRoll.addEventListener('click', rollDice);
 
-btnHold.addEventListener('click', function () {});
+btnHold.addEventListener('click', function () {
+  // 1: Add current score to the total score of the active player
+  scores[activePlayer] += currentScore;
+  document.getElementById(`score--${activePlayer}`).textContent =
+    scores[activePlayer];
+
+  // 2: check if the palyer reaches 100 and wins
+  if (scores[activePlayer] >= 100) {
+    document
+      .getElementById(`score--${activePlayer}`)
+      .classList.add('player--winner');
+  } else {
+    // switch player
+    switchPlayer();
+  }
+});
