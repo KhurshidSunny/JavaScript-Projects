@@ -71,6 +71,51 @@ const currencies = new Map([
   ['GBP', 'Pound sterling'],
 ]);
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const displayMovements = function (movements) {
+  movements.forEach((mov, i) => {
+    const type = mov > 0 ? 'deposit' : 'withdrawal';
+    const html = `
+    <div class="movements__row">
+      <div class="movements__type movements__type--${type}">${
+      i + 1
+    } ${type}</div>
+      <div class="movements__date">3 days ago</div>
+      <div class="movements__value">${mov}€</div>
+    </div>`;
+
+    containerMovements.insertAdjacentHTML('afterbegin', html);
+  });
+};
+
+displayMovements(account1.movements);
+
+const calcDisplayBalance = function (movements) {
+  const balance = movements.reduce((acc, cur) => {
+    return acc + cur;
+  }, 0);
+  labelBalance.innerHTML = `${balance} EUR`;
+};
+
+const createUsernames = function (accs) {
+  accs.forEach(acc => {
+    return (acc.username = acc.owner
+      .toLowerCase()
+      .split(' ')
+      .map(word => word.at(0))
+      .join(''));
+  });
+};
+
+createUsernames(accounts);
+calcDisplayBalance(account1.movements);
+
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const maximumNumber = movements.reduce((max, cur) => {
+//   return max > cur ? max : cur;
+// }, movements[0]);
+
+// console.log(maximumNumber);
 
 /////////////////////////////////////////////////
+
+/////// LOGIN /////////////////
