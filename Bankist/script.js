@@ -152,7 +152,7 @@ btnLogin.addEventListener('click', function (e) {
 
   if (currentAccount?.pin === Number(inputLoginPin.value)) {
     // display the UI and welcome message
-    containerApp.style.opacity = '1';
+    containerApp.style.opacity = 100;
     labelWelcome.textContent = `Welcome back, ${
       currentAccount.owner.split(' ')[0]
     }`;
@@ -191,6 +191,30 @@ btnTransfer.addEventListener('click', e => {
   }
 });
 
+// Delete the account from bank
+btnClose.addEventListener('click', e => {
+  e.preventDefault();
+
+  if (
+    currentAccount.username === inputCloseUsername.value &&
+    String(currentAccount.pin) === inputClosePin.value
+  ) {
+    // find the index of the this account
+    const index = accounts.findIndex(
+      acc => acc.username === inputCloseUsername.value
+    );
+
+    // Deleting the account
+    accounts.splice(index, 1);
+
+    // Hide UI
+    containerApp.style.opacity = 0;
+    labelWelcome.textContent = `Log in to get started`;
+  }
+
+  // clearing the fields
+  inputCloseUsername.value = inputClosePin.value = '';
+});
 console.log(accounts);
 
 // const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
