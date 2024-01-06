@@ -88,11 +88,11 @@ const displayMovements = function (movements) {
   });
 };
 
-const calcDisplayBalance = function (movements) {
-  const balance = movements.reduce((acc, cur) => {
+const calcDisplayBalance = function (acc) {
+  acc.balance = acc.movements.reduce((acc, cur) => {
     return acc + cur;
   }, 0);
-  labelBalance.innerHTML = `${balance} EUR`;
+  labelBalance.innerHTML = `${acc.balance} EUR`;
 };
 
 const calcDisplaySummary = function (acc) {
@@ -130,11 +130,23 @@ const createUsernames = function (accs) {
 
 createUsernames(accounts);
 
+const updateUI = function (acc) {
+  // Display movements
+  displayMovements(acc.movements);
+
+  // Display balance
+  calcDisplayBalance(acc);
+
+  // Display summary
+  calcDisplaySummary(acc);
+};
+
 let currentAccount;
 
-btnLogin.addEventListener('click', e => {
+btnLogin.addEventListener('click', function (e) {
   e.preventDefault();
-  const currentAccount = accounts.find(
+
+  currentAccount = accounts.find(
     acc => acc.username === inputLoginUsername.value
   );
 
@@ -149,16 +161,37 @@ btnLogin.addEventListener('click', e => {
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
 
-    // Display movements
-    displayMovements(currentAccount.movements);
-
-    // Display balance
-    calcDisplayBalance(currentAccount.movements);
-
-    // Display summary
-    calcDisplaySummary(currentAccount);
+    // udpate UI
+    updateUI(currentAccount);
   }
 });
+
+btnTransfer.addEventListener('click', e => {
+  e.preventDefault();
+
+  const amount = inputTransferAmount.value;
+  const receivedAcc = accounts.find(
+    acc => acc.username === inputTransferTo.value
+  );
+
+  // clearing the fields
+  inputTransferTo.value = inputTransferAmount.value = '';
+
+  if (
+    amount > 0 &&
+    receivedAcc &&
+    currentAccount.balance >= amount &&
+    receivedAcc?.username !== currentAccount.username
+  ) {
+    receivedAcc.movements.push(Number(amount));
+    currentAccount.movements.push(Number(-amount));
+
+    // update UI
+    updateUI(currentAccount);
+  }
+});
+
+console.log(accounts);
 
 // const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
