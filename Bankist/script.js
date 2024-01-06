@@ -74,6 +74,7 @@ const currencies = new Map([
 const displayMovements = function (movements) {
   movements.forEach((mov, i) => {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
+
     const html = `
     <div class="movements__row">
       <div class="movements__type movements__type--${type}">${
@@ -87,13 +88,34 @@ const displayMovements = function (movements) {
   });
 };
 
-displayMovements(account1.movements);
-
 const calcDisplayBalance = function (movements) {
   const balance = movements.reduce((acc, cur) => {
     return acc + cur;
   }, 0);
   labelBalance.innerHTML = `${balance} EUR`;
+};
+
+const calcDisplaySummary = function (acc) {
+  const incomes = acc.movements
+    .filter(mov => mov > 0)
+    .reduce((acc, mov) => acc + mov, 0);
+
+  labelSumIn.textContent = incomes;
+
+  const out = acc.movements
+    .filter(mov => mov < 0)
+    .reduce((mov, cur) => mov + cur, 0);
+  labelSumOut.textContent = Math.abs(out);
+
+  const interest = acc.movements
+    .filter(mov => mov > 0)
+    .map(deposit => (deposit * acc.interestRate) / 100)
+    .filter((int, i, arr) => {
+      return int >= 1;
+    })
+    .reduce((acc, int) => acc + int, 0);
+
+  labelSumInterest.textContent = interest;
 };
 
 const createUsernames = function (accs) {
@@ -107,14 +129,38 @@ const createUsernames = function (accs) {
 };
 
 createUsernames(accounts);
-calcDisplayBalance(account1.movements);
+
+let currentAccount;
+
+btnLogin.addEventListener('click', e => {
+  e.preventDefault();
+  const currentAccount = accounts.find(
+    acc => acc.username === inputLoginUsername.value
+  );
+
+  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+    // display the UI and welcome message
+    containerApp.style.opacity = '1';
+    labelWelcome.textContent = `Welcome back, ${
+      currentAccount.owner.split(' ')[0]
+    }`;
+
+    // clearing the input fields
+    inputLoginUsername.value = inputLoginPin.value = '';
+    inputLoginPin.blur();
+
+    // Display movements
+    displayMovements(currentAccount.movements);
+
+    // Display balance
+    calcDisplayBalance(currentAccount.movements);
+
+    // Display summary
+    calcDisplaySummary(currentAccount);
+  }
+});
 
 // const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-// const maximumNumber = movements.reduce((max, cur) => {
-//   return max > cur ? max : cur;
-// }, movements[0]);
-
-// console.log(maximumNumber);
 
 /////////////////////////////////////////////////
 
