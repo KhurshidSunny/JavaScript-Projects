@@ -191,6 +191,21 @@ btnTransfer.addEventListener('click', e => {
   }
 });
 
+// transfer amount
+btnLoan.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  const amount = Number(inputLoanAmount.value);
+
+  if (amount > 0 && currentAccount.movements.some(mov => mov >= mov * 0.1)) {
+    // Add the amount to the current user movement
+    currentAccount.movements.push(amount);
+
+    // update the UI
+    updateUI(currentAccount);
+  }
+});
+
 // Delete the account from bank
 btnClose.addEventListener('click', e => {
   e.preventDefault();
