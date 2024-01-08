@@ -123,7 +123,7 @@ const currencies = new Map([
 
 ///////////// Functions ///////////////
 
-const formatDate = function (date) {
+const formatDate = function (date, locale) {
   const calcDaysPassed = (date1, date2) =>
     Math.round(Math.abs(date2 - date1) / (1000 * 60 * 60 * 24));
 
@@ -132,15 +132,16 @@ const formatDate = function (date) {
   if (daysPassed === 0) return 'Today';
   if (daysPassed === 1) return 'Yesterday';
   if (daysPassed <= 7) return `${daysPassed} days ago`;
-  else {
-    const day = date.getDate();
-    const month = date.getMonth() + 1;
-    const year = date.getFullYear();
 
-    return ` ${day < 10 ? ` 0${day}` : day}/${
-      month < 9 ? `0${month}` : month
-    }/${year}`;
-  }
+  // const day = date.getDate();
+  // const month = date.getMonth() + 1;
+  // const year = date.getFullYear();
+
+  // return ` ${day < 10 ? ` 0${day}` : day}/${
+  //   month < 9 ? `0${month}` : month
+  // }/${year}`;
+
+  return new Intl.DateTimeFormat(locale).format(date);
 };
 
 const displayMovements = function (acc, sort = false) {
@@ -154,7 +155,7 @@ const displayMovements = function (acc, sort = false) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
 
     const date = new Date(acc.movementsDates[i]);
-    const displayDate = formatDate(date);
+    const displayDate = formatDate(date, acc.locale);
     const html = `
     <div class="movements__row">
       <div class="movements__type movements__type--${type}">${
@@ -232,23 +233,28 @@ btnLogin.addEventListener('click', function (e) {
   );
 
   if (currentAccount?.pin === Number(inputLoginPin.value)) {
-    // display the UI and welcome message
-    containerApp.style.opacity = 100;
     labelWelcome.textContent = `Welcome back, ${
       currentAccount.owner.split(' ')[0]
     }`;
+    // display the UI and welcome message
+    containerApp.style.opacity = 100;
 
-    // Current Date
     const now = new Date();
-    const day = now.getDate();
-    const month = now.getMonth() + 1;
-    const year = now.getFullYear();
-    const hour = `${now.getHours()}`.padStart(2, 0);
-    const min = `${now.getMinutes()}`.padStart(2, 0);
+    const options = {
+      hour: 'numeric',
+      minute: 'numeric',
+      day: 'numeric',
+      month: 'numeric',
+      year: 'numeric',
+      // weekday: 'long',
+    };
 
-    labelDate.textContent = `${day < 10 ? `0${day}` : day}/${
-      month < 9 ? `0${month}` : month
-    }/${year}, ${hour}:${min}`;
+    const locale = navigator.language;
+
+    labelDate.textContent = new Intl.DateTimeFormat(
+      currentAccount.locale,
+      options
+    ).format(now);
 
     // clearing the input fields
     inputLoginUsername.value = inputLoginPin.value = '';
