@@ -242,7 +242,33 @@ const updateUI = function (acc) {
   calcDisplaySummary(acc);
 };
 
-let currentAccount;
+const startLogoutTimer = function () {
+  let time = 160;
+
+  const tick = function () {
+    const min = `${Math.trunc(time / 60)}`.padStart(2, 0);
+    const sec = `${time % 60}`.padStart(2, 0);
+
+    // in each call, print the remaining timer to UI
+    labelTimer.textContent = `${min}:${sec}`;
+
+    if (time === 0) {
+      clearInterval(timer);
+      labelWelcome.textContent = 'Log in to get started';
+      containerApp.style.opacity = 0;
+    }
+
+    time--;
+  };
+
+  tick();
+  const timer = setInterval(tick, 1000);
+  return timer;
+
+  // when 0 seconds, stop the timer and logout the user
+};
+
+let currentAccount, timer;
 
 btnLogin.addEventListener('click', function (e) {
   e.preventDefault();
@@ -279,6 +305,10 @@ btnLogin.addEventListener('click', function (e) {
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
 
+    // logout timer
+    if (timer) clearInterval(timer);
+    timer = startLogoutTimer();
+
     // udpate UI
     updateUI(currentAccount);
   }
@@ -310,6 +340,10 @@ btnTransfer.addEventListener('click', e => {
 
     // update UI
     updateUI(currentAccount);
+
+    // Reset timer
+    clearInterval(timer);
+    timer = startLogoutTimer();
   }
 });
 
@@ -320,15 +354,22 @@ btnLoan.addEventListener('click', function (e) {
   const amount = Math.floor(inputLoanAmount.value);
 
   if (amount > 0 && currentAccount.movements.some(mov => mov >= mov * 0.1)) {
-    // Add the amount to the current user movement
-    currentAccount.movements.push(amount);
+    setTimeout(() => {
+      // Add the amount to the current user movement
+      currentAccount.movements.push(amount);
 
-    // also push current date
-    currentAccount.movementsDates.push(new Date().toISOString());
+      // also push current date
+      currentAccount.movementsDates.push(new Date().toISOString());
 
-    // update the UI
-    updateUI(currentAccount);
+      // update the UI
+      updateUI(currentAccount);
+    }, 3000);
+
+    // Reset timer
+    clearInterval(timer);
+    timer = startLogoutTimer();
   }
+  inputLoanAmount.value = '';
 });
 
 // Delete the account from bank
@@ -399,3 +440,13 @@ labelBalance.addEventListener('click', function () {
 // };
 
 // console.log(randomInt(10, 20));
+
+// const timer = setInterval(() => {
+//   const date = new Date();
+//   const hour = date.getHours();
+//   const min = date.getMinutes();
+//   const sec = date.getSeconds();
+//   console.log(`${hour}:${min}:${sec}`);
+// }, 1000);
+
+// console.log(Date.now());
