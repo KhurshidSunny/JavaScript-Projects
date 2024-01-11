@@ -1,14 +1,16 @@
 'use strict';
 
-///////////////////////////////////////
-// Modal window
-
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
-
 const header = document.querySelector('.header');
+const navLinks = document.querySelector('.nav__links');
+const btnScroll = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+
+///////////////////////////////////////
+// Modal window
 
 const openModal = function (e) {
   e.preventDefault();
@@ -37,6 +39,8 @@ message.classList.add('cookie-message');
 
 message.innerHTML = `we use cookies for improved functionality and analysitcs <button class="btn btn--close-cookie">got to</button>`;
 
+//// Creating the Cookie Message///////////////
+
 // header.before(message);
 // header.after(message)
 
@@ -44,7 +48,6 @@ message.innerHTML = `we use cookies for improved functionality and analysitcs <b
 header.append(message);
 
 // for copy
-
 // header.append(message.cloneNode(true));
 document
   .querySelector('.btn--close-cookie')
@@ -57,38 +60,7 @@ document
 message.style.backgroundColor = '#37383d';
 message.style.width = '120%';
 
-// console.log(message.style.backgroundColor);
-// console.log(message.style.height);
-
-// console.log(
-//   Number.parseFloat(getComputedStyle(message).height, 10) + 40 + 'px'
-// );
-// console.log(getComputedStyle(message).padding);
-
-// document.documentElement.style.setProperty('--color-primary', 'yellowgreen');
-
-// getting attributes
-
-const navLogo = document.querySelector('.nav__logo');
-// console.log(navLogo);
-
-// console.log(navLogo.src);
-// console.log(navLogo.alt);
-// console.log(navLogo.className);
-
-// navLogo.setAttribute('company', 'Bankist');
-// console.log(navLogo.getAttribute('company'));
-// console.log(navLogo.company);
-
-// console.log(navLogo.getAttribute('src'));
-
-///// getting the dataset values
-// console.log(Number(navLogo.dataset.versionNumber));
-
-///// SMOOTH SCROOLING
-
-const btnScroll = document.querySelector('.btn--scroll-to');
-const section1 = document.querySelector('#section--1');
+///// BUTTON SMOOTH SCROLLING
 
 btnScroll.addEventListener('click', function (e) {
   console.log(e);
@@ -119,3 +91,90 @@ btnScroll.addEventListener('click', function (e) {
   //// Scroll (modern way)
   section1.scrollIntoView({ behavior: 'smooth' });
 });
+
+////////////// Nav Scrolling smooth using Event Deligation /////////////
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  e.preventDefault();
+
+  if (e.target.classList.contains('nav__link')) {
+    const id = e.target.getAttribute('href');
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+  }
+});
+
+//////////Experimenting code ///////////////////////
+
+///////////////////////////
+////////////////////////////
+/////////////////////////
+
+// console.log(message.style.backgroundColor);
+// console.log(message.style.height);
+
+// console.log(
+//   Number.parseFloat(getComputedStyle(message).height, 10) + 40 + 'px'
+// );
+// console.log(getComputedStyle(message).padding);
+
+// document.documentElement.style.setProperty('--color-primary', 'yellowgreen');
+
+// getting attributes
+
+const navLogo = document.querySelector('.nav__logo');
+// console.log(navLogo);
+
+// console.log(navLogo.src);
+// console.log(navLogo.alt);
+// console.log(navLogo.className);
+
+// navLogo.setAttribute('company', 'Bankist');
+// console.log(navLogo.getAttribute('company'));
+// console.log(navLogo.company);
+
+// console.log(navLogo.getAttribute('src'));
+
+///// getting the dataset values
+// console.log(Number(navLogo.dataset.versionNumber));
+
+/*
+
+/////////////////////Event propation (capturing and bubbling)////////////////
+
+const randomInt = (min, max) =>
+  Math.floor(Math.random() * (max - min + 1) + min);
+
+const randomColor = () =>
+  `rgb(${randomInt(0, 255)}, ${randomInt(0, 255)}, ${randomInt(0, 255)})`;
+
+// Event propation (capturing and bubbling)
+document.querySelector('.nav__link').addEventListener('click', function (e) {
+  console.log('Link', e.target);
+  console.log(e.currentTarget);
+  console.log(this === e.currentTarget);
+  this.style.backgroundColor = randomColor();
+});
+
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  console.log('Nav_link', e.target);
+  console.log(e.currentTarget);
+  this.style.backgroundColor = randomColor();
+});
+
+document.querySelector('.nav').addEventListener('click', function (e) {
+  console.log('Nav', e.target);
+  console.log(e.currentTarget);
+  this.style.backgroundColor = randomColor();
+});
+
+//// Listneing to events in capturing phase
+
+// document.querySelector('.nav').addEventListener(
+//   'click',
+//   function (e) {
+//     console.log('Nav', e.target);
+//     console.log(e.currentTarget);
+//     this.style.backgroundColor = randomColor();
+//   },
+//   true
+// );
+*/
