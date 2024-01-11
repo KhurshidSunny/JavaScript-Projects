@@ -102,6 +102,31 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
   }
 });
 
+/// Tabbed componenet
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContainer = document.querySelector('.operations__tab-container');
+const tabsContent = document.querySelectorAll('.operations__content');
+
+// adding eventListners to the tabs using event deligation
+tabsContainer.addEventListener('click', function (e) {
+  const clicked = e.target.closest('.operations__tab');
+
+  // Guard class
+  if (!clicked) return;
+
+  // Active Tab clasess
+  tabs.forEach(tab => tab.classList.remove('operations__tab--active'));
+
+  tabsContent.forEach(tabContent =>
+    tabContent.classList.remove('operations__content--active')
+  );
+
+  clicked.classList.add('operations__tab--active');
+  document
+    .querySelector(`.operations__content--${clicked.dataset.tab}`)
+    .classList.add('operations__content--active');
+});
+
 //////////Experimenting code ///////////////////////
 
 ///////////////////////////
@@ -178,3 +203,38 @@ document.querySelector('.nav').addEventListener('click', function (e) {
 //   true
 // );
 */
+
+/////////// DOM Traversing
+// const h1 = document.querySelector('h1');
+
+// // Downways
+// console.log(h1.childNodes);
+// console.log(h1.children); // just returns the innerHTML
+
+// h1.querySelector('.highlight').style.backgroundColor = 'red';
+
+// Direct children
+
+// console.log(h1.firstElementChild);
+// console.log(h1.lastElementChild);
+
+//////////// Going upward
+
+// direct parent
+// console.log(h1.parentElement);
+// console.log(h1.parentNode);
+
+/// Finding the closest parent
+// const clParent = h1.closest('.header');
+// clParent.style.background = 'var(--gradient-secondary)';
+
+// traversing sideways
+
+// console.log(h1.previousElementSibling);
+// console.log(h1.nextElementSibling);
+
+// To find all the sibling we do a trick
+// const allSibling = h1.parentElement.children;
+// [...allSibling].forEach(el => {
+//   if (el !== h1) el.style.transform = 'scale(0.5)';
+// });
