@@ -38,13 +38,13 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
+/*
+
+//// Creating the Cookie Message///////////////
 const message = document.createElement('div');
 message.classList.add('cookie-message');
 
 message.innerHTML = `we use cookies for improved functionality and analysitcs <button class="btn btn--close-cookie">got to</button>`;
-
-//// Creating the Cookie Message///////////////
-
 // header.before(message);
 // header.after(message)
 
@@ -63,6 +63,8 @@ document
 // Styles
 message.style.backgroundColor = '#37383d';
 message.style.width = '120%';
+
+*/
 
 ///// BUTTON SMOOTH SCROLLING
 
@@ -147,10 +149,43 @@ const handleHover = function (e) {
 nav.addEventListener('mouseover', handleHover.bind(0.5));
 nav.addEventListener('mouseout', handleHover.bind(1));
 
+// Sticky Navigation: IntersectionObserver API
+const navHeight = nav.getBoundingClientRect().height;
+
+const obsOptions = {
+  root: null,
+  threshold: 0,
+  rootMargin: `-${navHeight}px`,
+};
+
+const stickyNav = function (entries) {
+  const [entry] = entries;
+  if (!entry.isIntersecting) nav.classList.add('sticky');
+  else nav.classList.remove('sticky');
+};
+
+const headerObserver = new IntersectionObserver(stickyNav, obsOptions);
+
+headerObserver.observe(header);
+
+// const obsCallback = function (entries, observer) {
+//   entries.forEach(el => console.log(el));
+// };
+
+// const obsOptions = {
+//   root: null,
+//   threshold: [0, 0.2],
+// };
+
+// const observer = new IntersectionObserver(obsCallback, obsOptions);
+
+// // target element
+// observer.observe(section1);
+
 //////////Experimenting code ///////////////////////
 
 ///////////////////////////
-////////////////////////////
+////////////////////////////-
 /////////////////////////
 
 // console.log(message.style.backgroundColor);
@@ -165,7 +200,7 @@ nav.addEventListener('mouseout', handleHover.bind(1));
 
 // getting attributes
 
-const navLogo = document.querySelector('.nav__logo');
+// const navLogo = document.querySelector('.nav__logo');
 // console.log(navLogo);
 
 // console.log(navLogo.src);
