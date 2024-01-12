@@ -168,6 +168,29 @@ const headerObserver = new IntersectionObserver(stickyNav, obsOptions);
 
 headerObserver.observe(header);
 
+// Section animation
+const allSections = document.querySelectorAll('.section');
+
+const displaySection = function (entries, observer) {
+  const [entry] = entries;
+  console.log(entry);
+  if (!entry.isIntersecting) return;
+  entry.target.classList.remove('section--hidden');
+
+  // unobserve the target elements
+  observer.unobserve(entry.target);
+};
+
+const secOptions = {
+  root: null,
+  threshold: 0.15,
+};
+const sectionsObserver = new IntersectionObserver(displaySection, secOptions);
+allSections.forEach(function (sec) {
+  sectionsObserver.observe(sec);
+  sec.classList.add('section--hidden');
+});
+
 // const obsCallback = function (entries, observer) {
 //   entries.forEach(el => console.log(el));
 // };
