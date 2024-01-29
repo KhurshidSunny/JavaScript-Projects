@@ -75,3 +75,10 @@ dotContainer.addEventListener("click", function (e) {
     activateDot(slide);
   }
 });
+
+// changing slide with arrow buttons
+
+window.addEventListener("keyup", function (e) {
+  if (e.key == "ArrowRight") nextSlide();
+  e.key == "ArrowLeft" && prevSlide();
+});
