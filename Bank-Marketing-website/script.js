@@ -289,6 +289,7 @@ const slider = function () {
 
   btnRigth.addEventListener('click', nextSlide);
   btnLeft.addEventListener('click', prevSlide);
+
   window.addEventListener('keydown', function (e) {
     if (e.key === 'ArrowLeft') prevSlide();
     e.key === 'ArrowRight' && nextSlide();
