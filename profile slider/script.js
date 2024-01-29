@@ -82,3 +82,29 @@ window.addEventListener("keyup", function (e) {
   if (e.key == "ArrowRight") nextSlide();
   e.key == "ArrowLeft" && prevSlide();
 });
+
+// changing the card color dynamically
+const colorContainer = document.querySelector(".color-container");
+
+const colorSelector = document.querySelectorAll(".color");
+colorSelector[0].style.backgroundColor = "#84a765";
+colorSelector[1].style.backgroundColor = "#4675d3";
+colorSelector[2].style.backgroundColor = "#583f52";
+
+colorContainer.addEventListener("click", function (e) {
+  if (e.target.classList.contains("color")) {
+    const { color } = e.target.dataset;
+
+    if (color == 0) {
+      sliderContainer.style.setProperty("--primary-color", "#84a765");
+    }
+
+    if (color == 1) {
+      sliderContainer.style.setProperty("--primary-color", "#4675d3");
+    }
+
+    if (color == 2) {
+      sliderContainer.style.setProperty("--primary-color", "#583f52");
+    }
+  }
+});

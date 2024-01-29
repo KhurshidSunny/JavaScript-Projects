@@ -1,5 +1,7 @@
 :root {
-  --primary-color: #4070f4;
+  --primary-color: #84a765;
+  --primary-color: #4675d3;
+  --primary-color: #583f52;
   --color-white: #fff;
   --font-color: rgb(162, 151, 151);
   --body-color: rgb(237, 229, 229);
@@ -154,6 +156,28 @@ body {
 
 .dot-activated {
   background-color: var(--primary-color);
+}
+
+/* color container style  */
+.color-container {
+  width: 15rem;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+}
+
+.color {
+  width: 2rem;
+  height: 2rem;
+  border: 2px solid var(--primary-color);
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
 }
 
 .hidden {
