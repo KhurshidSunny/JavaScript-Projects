@@ -5,109 +5,139 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Profile slider</title>
 
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      integrity="sha512-..."
+      crossorigin="anonymous"
+    />
+
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <section class="section-container">
       <div class="slider-container">
-        <div class="profile">
-          <div class="upper-part">
-            <div class="img-container">
-              <img src="images/image-1.jpg" alt="" />
+        <button class="arrow-btn" id="prev-button">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+
+        <div class="profile profile--0" data-card="0">
+          <div class="card">
+            <div class="upper-part">
+              <div class="img-container">
+                <img src="images/image-1.jpg" alt="" />
+              </div>
             </div>
-          </div>
-          <div class="lower-part">
-            <h4 class="name">Sam Whiteman</h4>
-            <p class="desc">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              Asperiores placeat architecto laudantium repudiandae autem minima
-              iure aliquid
-            </p>
-            <button class="btn view-btn">view profile</button>
+            <div class="lower-part">
+              <h4 class="name">Sam Whiteman</h4>
+              <p class="desc">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Asperiores placeat architecto laudantium repudiandae autem
+                minima iure aliquid
+              </p>
+              <button class="btn view-btn">view profile</button>
+            </div>
           </div>
         </div>
 
-        <div class="profile">
-          <div class="upper-part">
-            <div class="img-container">
-              <img src="images/image-2.jpg" alt="" />
+        <div class="profile profile--1" data-card="1">
+          <div class="card">
+            <div class="upper-part">
+              <div class="img-container">
+                <img src="images/image-2.jpg" alt="" />
+              </div>
             </div>
-          </div>
-          <div class="lower-part">
-            <h4 class="name">Sam Whiteman</h4>
-            <p class="desc">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              Asperiores placeat architecto laudantium repudiandae autem minima
-              iure aliquid
-            </p>
-            <button class="btn view-btn">view profile</button>
+            <div class="lower-part">
+              <h4 class="name">Sam Whiteman</h4>
+              <p class="desc">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Asperiores placeat architecto laudantium repudiandae autem
+                minima iure aliquid
+              </p>
+              <button class="btn view-btn">view profile</button>
+            </div>
           </div>
         </div>
 
-        <div class="profile">
-          <div class="upper-part">
-            <div class="img-container">
-              <img src="images/image-3.jpg" alt="" />
+        <div class="profile profile--2" data-card="2">
+          <div class="card">
+            <div class="upper-part">
+              <div class="img-container">
+                <img src="images/image-3.jpg" alt="" />
+              </div>
             </div>
-          </div>
-          <div class="lower-part">
-            <h4 class="name">Sam Whiteman</h4>
-            <p class="desc">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              Asperiores placeat architecto laudantium repudiandae autem minima
-              iure aliquid
-            </p>
-            <button class="btn view-btn">view profile</button>
+            <div class="lower-part">
+              <h4 class="name">Sam Whiteman</h4>
+              <p class="desc">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Asperiores placeat architecto laudantium repudiandae autem
+                minima iure aliquid
+              </p>
+              <button class="btn view-btn">view profile</button>
+            </div>
           </div>
         </div>
 
-        <!-- <div class="profile">
-          <div class="upper-part">
-            <img src="images/image-4new.jpg" alt="" />
+        <div class="profile profile--3" data-card="3">
+          <div class="card">
+            <div class="upper-part">
+              <div class="img-container">
+                <img src="images/image-4new.jpg" alt="" />
+              </div>
+            </div>
+            <div class="lower-part">
+              <h4 class="name">Sam Whiteman</h4>
+              <p class="desc">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Asperiores placeat architecto laudantium repudiandae autem
+                minima iure aliquid
+              </p>
+              <button class="btn view-btn">view profile</button>
+            </div>
           </div>
-          <div class="lower-part">
-            <h4 class="name">Sam Whiteman</h4>
-            <p class="desc">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              Asperiores placeat architecto laudantium repudiandae autem minima
-              iure aliquid fugiat vel! Sunt fugiat distinctio maiores ullam
-              repellendus
-            </p>
-            <button class="btn view-btn">view profile</button>
-          </div>
-        </div> -->
+        </div>
 
-        <!-- <div class="profile">
-          <div class="upper-part">
-            <img src="images/image-5new.jpg" alt="" />
+        <div class="profile profile--4" data-card="4">
+          <div class="card">
+            <div class="upper-part">
+              <div class="img-container">
+                <img src="images/image-5new.jpg" alt="" />
+              </div>
+            </div>
+            <div class="lower-part">
+              <h4 class="name">Sam Whiteman</h4>
+              <p class="desc">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Asperiores placeat architecto laudantium repudiandae autem
+                minima iure aliquid
+              </p>
+              <button class="btn view-btn">view profile</button>
+            </div>
           </div>
-          <div class="lower-part">
-            <h4 class="name">Sam Whiteman</h4>
-            <p class="desc">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              Asperiores placeat architecto laudantium repudiandae autem minima
-              iure aliquid fugiat vel! Sunt fugiat distinctio maiores ullam
-              repellendus
-            </p>
-            <button class="btn view-btn">view profile</button>
-          </div>
-        </div> -->
+        </div>
 
-        <!-- <div class="profile">
-          <div class="upper-part">
-            <img src="images/image-6.jpg" alt="" />
+        <div class="profile profile--5" data-card="5">
+          <div class="card">
+            <div class="upper-part">
+              <div class="img-container">
+                <img src="images/image-6.jpg" alt="" />
+              </div>
+            </div>
+            <div class="lower-part">
+              <h4 class="name">Sam Whiteman</h4>
+              <p class="desc">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Asperiores placeat architecto laudantium repudiandae autem
+                minima iure aliquid
+              </p>
+              <button class="btn view-btn">view profile</button>
+            </div>
           </div>
-          <div class="lower-part">
-            <h4 class="name">Sam Whiteman</h4>
-            <p class="desc">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              Asperiores placeat architecto laudantium repudiandae autem minima
-              iure aliquid fugiat vel! Sunt fugiat distinctio maiores ullam
-              repellendus
-            </p>
-            <button class="btn view-btn">view profile</button>
-          </div>
-        </div> -->
+        </div>
+
+        <button class="arrow-btn" id="next-button">
+          <i class="fas fa-chevron-right"></i>
+        </button>
       </div>
     </section>
     <script src="script.js"></script>

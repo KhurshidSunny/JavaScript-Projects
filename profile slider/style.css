@@ -3,7 +3,15 @@
   --color-white: #fff;
   --font-color: rgb(162, 151, 151);
   --body-color: rgb(237, 229, 229);
+  --color-container: rgb(220, 216, 211);
 }
+
+/* * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+} */
 
 body {
   margin: 0;
@@ -20,21 +28,28 @@ body {
 }
 
 .slider-container {
-  background-color: rgb(220, 216, 211);
-  width: 80%;
-  height: 80%;
+  background-color: var(--color-container);
+  width: 40rem;
+  height: 40rem;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
 .profile {
   height: 30rem;
-  width: 20rem;
+  width: 24rem;
   margin: 0 3rem;
+  position: relative;
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
   border-radius: 30px;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: absolute;
+  background-color: var(--color-white);
+  transition: transform 0.5s ease;
 }
 
 .profile .upper-part {
@@ -42,6 +57,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+
   background-color: var(--primary-color);
 }
 
@@ -69,6 +85,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+
   justify-content: center;
   padding: 10px 15px;
 }
@@ -92,4 +109,32 @@ body {
   border: none;
   border-radius: 5px;
   font-size: 18px;
+  margin: 0 0 25px 0;
+  cursor: pointer;
+}
+
+.arrow-btn {
+  font-size: 3rem;
+  font-weight: 400;
+  border: none;
+  background-color: var(--body-color);
+  color: var(--primary-color);
+  cursor: pointer;
+  z-index: 1;
+}
+
+#next-button {
+  position: absolute;
+  right: 15px;
+}
+#prev-button {
+  position: absolute;
+  left: 15px;
+}
+
+.hidden {
+  display: none;
+}
+.display {
+  display: block;
 }
