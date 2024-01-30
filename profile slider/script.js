@@ -7,7 +7,6 @@ const dotContainer = document.querySelector(".dot-container");
 let curProfile = 0;
 
 // functions
-
 const createDot = function () {
   allCards.forEach(function (_, i) {
     dotContainer.insertAdjacentHTML(
@@ -40,6 +39,7 @@ const init = function () {
 };
 init();
 
+// Next slide function
 const nextSlide = function () {
   if (curProfile == allCards.length - 1) {
     curProfile = 0;
@@ -52,6 +52,7 @@ const nextSlide = function () {
   activateDot(curProfile);
 };
 
+// previsous slide function
 const prevSlide = function () {
   if (curProfile == 0) {
     curProfile = allCards.length - 1;

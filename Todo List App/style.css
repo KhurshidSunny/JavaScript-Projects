@@ -1,0 +1,44 @@
+:root {
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+
+  justify-content: space-between;
+  padding: 10px 50px;
+  background-color: rgb(61, 58, 58);
+}
+
+.logo-container {
+  width: 8rem;
+  height: 8rem;
+  margin-right: 5rem;
+}
+
+.logo-container img {
+  width: 8rem;
+  height: 8rem;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.search {
+  border: 2px solid yellowgreen;
+  padding: 15px 25px;
+  width: 40%;
+  margin-right: auto;
+}
+
+.search input {
+  width: 280px;
+}
