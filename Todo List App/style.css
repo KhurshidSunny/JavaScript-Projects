@@ -82,11 +82,26 @@
   flex-direction: column;
   align-items: center;
   margin: 20px 0;
+  overflow: scroll;
 }
 
 .user {
   margin-left: auto;
   padding: 20px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.user input {
+  padding: 10px 0;
+  margin-left: 20px;
+  border: none;
+  width: 8rem;
+  font-weight: bold;
+
+  outline: none;
+  background-color: rgb(236, 236, 236);
+  font-size: 20px;
 }
 
 .create-todo-container {
@@ -176,6 +191,14 @@
 }
 
 /* classes for filling while click on them */
+.filled-business {
+  background-color: rgb(86, 86, 228);
+  border: 2px solid white;
+}
+
+.filled-personal {
+  background-color: magenta;
+}
 
 .add-todo-container .add-button {
   background-color: rgb(235, 21, 168);
@@ -205,9 +228,11 @@
   justify-content: space-between;
   padding: 20px 0;
   align-items: center;
+  border-radius: 8px;
 }
 
-.task-container .checker {
+.task-container .checker-business,
+.checker-personal {
   width: 2rem;
   height: 2rem;
   appearance: none;
@@ -215,8 +240,12 @@
   -moz-appearance: none;
   border-radius: 50%;
   margin: 0 40px 0 20px;
-  border: 3px solid rgb(235, 21, 168);
+  border: 3px solid rgb(86, 86, 228);
   cursor: pointer;
+}
+
+.checker-personal {
+  border: 3px solid rgb(235, 21, 168);
 }
 
 /* .task-container .checker:checked {
