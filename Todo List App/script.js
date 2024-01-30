@@ -7,17 +7,28 @@ const categoryContainer = document.querySelector(".category");
 const todoListContainer = document.querySelector(".todo-list");
 
 let catValue;
+let taskNo = 0;
 
 addButton.addEventListener("click", function () {
   const todoTask = `<div class="task-container">
-  <input class="checker-${catValue}"   type="radio" />
-  <input class="task" type="text"  value=${taskInput.value} />
+  <div class="filled-${catValue} circle-task" data-task="${taskNo}"></div>
+  <input data-desc="${taskNo}" class="task" type="text"  value="${taskInput.value}" />
   <i class="fas fa-ellipsis-v menu-button"></i>
 </div>`;
 
   todoListContainer.insertAdjacentHTML("afterbegin", todoTask);
 
   taskInput.value = "";
+  taskNo++;
+});
+
+todoListContainer.addEventListener("click", function (e) {
+  if (e.target.classList.contains("circle-task")) {
+    const { task } = e.target.dataset;
+    e.target.classList.toggle(`uncheck-task-${catValue}`);
+    document.querySelectorAll(".task")[task].style.textDecoration =
+      "line-through";
+  }
 });
 
 // selecting the category
