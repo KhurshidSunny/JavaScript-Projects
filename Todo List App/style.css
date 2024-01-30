@@ -14,15 +14,15 @@ body {
   display: flex;
   align-items: center;
 
-  justify-content: space-between;
+  justify-content: space-evenly;
   padding: 10px 50px;
-  background-color: rgb(61, 58, 58);
+  background-color: rgb(9, 122, 117);
 }
 
 .logo-container {
   width: 8rem;
   height: 8rem;
-  margin-right: 5rem;
+  margin-right: 10rem;
 }
 
 .logo-container img {
@@ -33,12 +33,38 @@ body {
 }
 
 .search {
-  border: 2px solid yellowgreen;
-  padding: 15px 25px;
   width: 40%;
   margin-right: auto;
+  background-color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 2rem;
 }
 
 .search input {
-  width: 280px;
+  width: 80%;
+  padding: 20px 30px;
+  border: none;
+  outline: none;
+  font-size: 1.5rem;
+}
+
+.search-icon {
+  font-size: 20px;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.links {
+  display: flex;
+  color: white;
+  list-style-type: none;
+  margin-right: 6rem;
+}
+
+.links .link {
+  margin-left: 3rem;
+
+  font-size: 25px;
 }
