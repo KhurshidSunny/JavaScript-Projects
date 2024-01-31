@@ -8,7 +8,6 @@ const todoListContainer = document.querySelector(".todo-list");
 
 let catValue;
 let taskNo = 0;
-
 addButton.addEventListener("click", function () {
   const todoTask = `<div class="task-container">
   <div class="filled-${catValue} circle-task" data-task="${taskNo}"></div>
@@ -16,7 +15,7 @@ addButton.addEventListener("click", function () {
   <i class="fas fa-ellipsis-v menu-button"></i>
 </div>`;
 
-  todoListContainer.insertAdjacentHTML("afterbegin", todoTask);
+  todoListContainer.insertAdjacentHTML("beforeend", todoTask);
 
   taskInput.value = "";
   taskNo++;
@@ -26,8 +25,11 @@ todoListContainer.addEventListener("click", function (e) {
   if (e.target.classList.contains("circle-task")) {
     const { task } = e.target.dataset;
     e.target.classList.toggle(`uncheck-task-${catValue}`);
-    document.querySelectorAll(".task")[task].style.textDecoration =
-      "line-through";
+    console.log(task);
+
+    document
+      .querySelectorAll(".task")
+      [task].classList.toggle("line-through-desc");
   }
 });
 

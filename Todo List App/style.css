@@ -261,6 +261,10 @@
   background-color: white;
 }
 
+.line-through-desc {
+  text-decoration: line-through;
+}
+
 .task-container .task {
   margin-right: auto;
   padding: 10px 0;
