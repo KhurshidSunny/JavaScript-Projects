@@ -6,18 +6,21 @@ const categoryContainer = document.querySelector(".category");
 
 const todoListContainer = document.querySelector(".todo-list");
 const menuBox = document.querySelector(".menu-box");
+const usernameInput = document.querySelector("#username-input").value;
+console.log(usernameInput);
 
 let catValue;
 let taskNo = 0;
 let curTask = -1;
 
-addButton.addEventListener("click", function () {
+// create task function
+const addTask = function () {
   if (!taskInput.value) return;
   const todoTask = `<div class="task-container" data-task-no="${taskNo}">
   <div class="filled-${catValue} circle-task" data-task="${taskNo}"></div>
   <input data-desc="${taskNo}" class="task" type="text"  value="${taskInput.value}" />
   <i class="fas fa-ellipsis-v menu-button" data-button="${taskNo}"></i>
-  <div class="menu-box hide" data-edit-task="${curTask}" >
+  <div class="menu-box hide"" >
             <button class="delete-button" >Delete</button>
             <button class="edit-button" >Edit</button>
           </div>
@@ -28,7 +31,9 @@ addButton.addEventListener("click", function () {
   taskInput.value = "";
   taskNo++;
   curTask++;
-});
+};
+
+addButton.addEventListener("click", addTask);
 
 // show menu button box
 
@@ -38,6 +43,7 @@ todoListContainer.addEventListener("click", function (e) {
 
     // Get the position of the clicked button
     const buttonRect = e.target.getBoundingClientRect();
+
     // console.log(buttonRect);
 
     // Position the menu box to the clicked button next
