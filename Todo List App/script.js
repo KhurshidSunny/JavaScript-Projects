@@ -9,7 +9,7 @@ const menuBox = document.querySelector(".menu-box");
 
 let catValue;
 let taskNo = 0;
-let allTasks = -1;
+let curTask = -1;
 
 addButton.addEventListener("click", function () {
   if (!taskInput.value) return;
@@ -17,9 +17,9 @@ addButton.addEventListener("click", function () {
   <div class="filled-${catValue} circle-task" data-task="${taskNo}"></div>
   <input data-desc="${taskNo}" class="task" type="text"  value="${taskInput.value}" />
   <i class="fas fa-ellipsis-v menu-button" data-button="${taskNo}"></i>
-  <div class="menu-box hide" >
-            <button class="delete-button" data-task="${taskNo}">Delete</button>
-            <button class="edit-button">Edit</button>
+  <div class="menu-box hide" data-edit-task="${curTask}" >
+            <button class="delete-button" >Delete</button>
+            <button class="edit-button" >Edit</button>
           </div>
 </div>`;
 
@@ -27,7 +27,7 @@ addButton.addEventListener("click", function () {
 
   taskInput.value = "";
   taskNo++;
-  allTasks++;
+  curTask++;
 });
 
 // show menu button box
@@ -52,13 +52,20 @@ todoListContainer.addEventListener("click", function (e) {
 
 menuBox.addEventListener("click", function (e) {
   if (e.target.classList.contains("delete-button")) {
-    let curData;
     const taskToDelete = document.querySelectorAll(".task-container");
     // delete the selected element
-    taskToDelete[allTasks].remove();
+    taskToDelete[curTask].remove();
     // also hide the menu box
     menuBox.classList.remove("display-menu-box");
-    allTasks--;
+    curTask--;
+  }
+  if (e.target.classList.contains("edit-button")) {
+    // selecting all the inputs
+    const allInputs = document.querySelectorAll(".task");
+    const el = e.target.closest(".menu-box");
+
+    allInputs[curTask].focus();
+    menuBox.classList.remove("display-menu-box");
   }
 });
 
@@ -66,7 +73,6 @@ todoListContainer.addEventListener("click", function (e) {
   if (e.target.classList.contains("circle-task")) {
     const { task } = e.target.dataset;
     e.target.classList.toggle(`uncheck-task-${catValue}`);
-    console.log(task);
 
     document
       .querySelectorAll(".task")
