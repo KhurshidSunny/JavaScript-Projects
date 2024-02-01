@@ -60,6 +60,11 @@
   margin-right: 6rem;
 }
 
+.link:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .links .link {
   margin-left: 3rem;
 
@@ -201,7 +206,7 @@
 }
 
 .add-todo-container .add-button {
-  background-color: rgb(235, 21, 168);
+  background-color: rgb(9, 122, 117);
   padding: 15px 0;
   color: white;
   font-size: 18px;
@@ -213,9 +218,14 @@
 }
 
 /*  do-to list */
+.todo-list-container {
+  position: relative;
+}
+
 .todo-list {
   width: 35rem;
   margin-top: 20px;
+  /* border: 2px solid red; */
 }
 .todo-list h2 {
   color: gray;
@@ -229,6 +239,7 @@
   padding: 20px 0;
   align-items: center;
   border-radius: 8px;
+  margin-top: 15px;
 }
 
 .task-container .circle-task {
@@ -277,4 +288,35 @@
   margin-right: 20px;
   font-size: 2rem;
   cursor: pointer;
+}
+
+.todo-list-container .menu-box {
+  /* border: 2px solid green; */
+  width: 6rem;
+  padding: 10px 15px;
+  position: absolute;
+  top: 6rem;
+  right: 2rem;
+  background-color: rgb(236, 236, 236);
+  border-radius: 8px;
+}
+
+.menu-box button {
+  padding: 4px 6px;
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  width: 5rem;
+  border: none;
+
+  border-bottom: 1px solid gray;
+}
+
+.hide {
+  display: none;
+}
+
+.display-menu-box {
+  display: block;
 }
