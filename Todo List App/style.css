@@ -103,6 +103,7 @@
   border: none;
   width: 8rem;
   font-weight: bold;
+  border-bottom: 1px solid gray;
 
   outline: none;
   background-color: rgb(236, 236, 236);
@@ -222,14 +223,34 @@
   position: relative;
 }
 
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  margin: 6px 0 0 6px;
+  align-items: center;
+}
+
+.task-header h2 {
+  color: gray;
+  margin: 0;
+}
+
+.task-header button {
+  padding: 10px 25px;
+  background-color: rgb(228, 88, 88);
+  color: white;
+  border: none;
+  margin-top: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+}
+
 .todo-list {
   width: 35rem;
   margin-top: 20px;
   /* border: 2px solid red; */
-}
-.todo-list h2 {
-  color: gray;
-  margin-bottom: 10px;
 }
 
 .task-container {
