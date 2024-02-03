@@ -15,6 +15,8 @@ let curTask = -1;
 let numOftTasks = -1;
 const taskArr = [];
 
+// ALL FUNCTIONS
+
 const allTasks = JSON.parse(localStorage.getItem("taskArr"));
 // create task function
 const addTask = function (taskInput, catValue) {
@@ -82,6 +84,7 @@ const editDeleteHanlders = function (e) {
   }
 };
 
+// check or uncheck the task handler
 const checkOrUnCheckTask = function (e) {
   if (e.target.classList.contains("circle-task")) {
     const { task } = e.target.dataset;
@@ -116,14 +119,6 @@ if (savedUsername) {
   usernameInput.value = savedUsername;
 }
 
-// storing username in localstorage
-usernameInput.addEventListener("input", function () {
-  const enteredUsername = usernameInput.value.trim();
-
-  // set the name to local storage
-  localStorage.setItem("username", enteredUsername);
-});
-
 // Recreating the tasks elements when reload the page with its data
 if (allTasks) {
   allTasks.forEach((task, i) => {
@@ -142,6 +137,13 @@ clearButton.addEventListener("click", function () {
 addButton.addEventListener("click", function () {
   addTask(taskInput.value, catValue);
   taskInput.value = "";
+});
+// storing username in localstorage
+usernameInput.addEventListener("input", function () {
+  const enteredUsername = usernameInput.value.trim();
+
+  // set the name to local storage
+  localStorage.setItem("username", enteredUsername);
 });
 
 todoListContainer.addEventListener("click", menuHandler);

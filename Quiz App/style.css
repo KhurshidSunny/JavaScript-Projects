@@ -1,0 +1,95 @@
+:root {
+  --box-color-gradient: linear-gradient(to bottom right, #fdfcfb, #e2d1c3);
+  --body-color-gradient: linear-gradient(to bottom right, #38a2d7, #561139);
+  --border-radius: 8px;
+  --md-space: 8px;
+  --ls-space: 16px;
+  --xl-space: 32px;
+  --xxl-space: 64px;
+  --primary-font: "Roboto", sans-serif;
+  --secondary-font: "Anek Telugu", sans-serif;
+  --font-color: #414a4c;
+}
+
+body {
+  background-image: var(--body-color-gradient);
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--primary-font);
+  color: var(--font-color);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+h1,
+h2,
+h3 h4,
+p {
+  font-family: var(--secondary-font);
+}
+
+.rules-section {
+  background-image: var(--box-color-gradient);
+  box-shadow: 4px 10px 8px rgba(0, 0, 0, 0.2);
+  width: 45rem;
+  height: 20rem;
+  border-radius: var(--border-radius);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.rules-heading {
+  margin: calc(var(--xl-space) - 10px) 0 var(--md-space) var(--xl-space);
+  margin-right: auto;
+}
+
+.rules-section .rules {
+  padding: var(--ls-space) var(--md-space);
+  margin: var(--md-space);
+  border-bottom: 2px solid rgb(181, 175, 175);
+  border-top: 2px solid rgb(181, 175, 175);
+}
+
+.rules .rules-desc {
+  font-size: 24px;
+  font-weight: 400;
+  margin-bottom: var(--md-space);
+}
+
+.rules-desc span {
+  color: red;
+  font-weight: bold;
+}
+
+.btn {
+  color: white;
+  background-color: rgb(34, 115, 195);
+  padding: var(--md-space) calc(var(--xl-space) - 10px);
+  border: none;
+  margin: var(--md-space) var(--xl-space) var(--md-space) 0;
+  font-size: 18px;
+  font-weight: 500;
+  margin-left: auto;
+  border-radius: var(--border-radius);
+  transition: transform 0.2s ease-in;
+}
+.btn:hover {
+  cursor: pointer;
+  color: black;
+  transform: scale(1.1);
+}
+
+.display {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
