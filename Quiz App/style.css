@@ -35,14 +35,6 @@ p {
   font-family: var(--secondary-font);
 }
 
-.display {
-  display: block;
-}
-
-.hidden {
-  display: none;
-}
-
 /* ///////////////// RULES SECTION //////////////// */
 .rules-section {
   background-image: var(--box-color-gradient);
@@ -53,9 +45,6 @@ p {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-.hidden {
-  display: none;
 }
 
 .rules-heading {
@@ -88,14 +77,13 @@ p {
   border: none;
   margin: var(--md-space) var(--xl-space) var(--md-space) 0;
   font-size: 18px;
-  font-weight: 500;
+  font-weight: bold;
   margin-left: auto;
   border-radius: var(--border-radius);
   transition: transform 0.2s ease-in;
 }
 .btn:hover {
   cursor: pointer;
-  color: black;
   transform: scale(1.1);
 }
 
@@ -158,8 +146,8 @@ p {
 }
 
 .ques-options-container {
-  /* margin: var(--md) 0 var(--ls-space) 0; */
   border-bottom: 2px solid rgb(48, 46, 46);
+  margin-bottom: 0;
 }
 
 .options {
@@ -170,6 +158,9 @@ p {
 }
 
 .option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   background-color: rgb(194, 215, 234);
   padding: calc(var(--ls-space) - 4px) 0;
   border-radius: 5px;
@@ -181,10 +172,79 @@ p {
   cursor: pointer;
 }
 
+.option .circle {
+  width: 2rem;
+  height: 2rem;
+  margin-right: var(--ls-space);
+  border-radius: 50%;
+}
+
+.option-red {
+  background-color: rgb(233, 191, 191);
+}
+.option-green {
+  background-color: rgb(181, 223, 181);
+}
+
+.circle-red {
+  background-color: red;
+}
+.circle-green {
+  background-color: green;
+}
+
+.quiz-app-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
 .counter {
-  margin-right: auto;
-  padding: var(--md-space);
-  margin-left: 20px;
   font-size: 20px;
   font-weight: 500;
+}
+
+/* /////////// REWARD SECTION /////////////////////// */
+.reward-section {
+  width: 30rem;
+  height: 12rem;
+  background-image: var(--box-color-gradient);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: var(--xl-space) var(--xl-space);
+  border-radius: var(--border-radius);
+}
+
+.reward-section .reward-desc {
+  font-size: 25px;
+  font-weight: bold;
+  text-align: justify;
+  line-height: 1.5;
+}
+
+.reward-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.reward-buttons .exit-btn {
+  background-color: var(--box-color-gradient);
+  border: 2px solid rgb(169, 185, 236);
+  color: var(--font-color);
+  transition: all 0.1 ease-out;
+}
+.exit-btn:hover {
+  background-color: rgb(34, 115, 195);
+  color: white;
+}
+
+.display {
+  display: block;
+}
+
+.hidden {
+  display: none;
 }

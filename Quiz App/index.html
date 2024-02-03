@@ -30,7 +30,7 @@
           3. You'll get rewards on the basis of your correct answers
         </p>
       </div>
-      <button id="continue-btn" class="btn">Continue</button>
+      <button class="continue-btn btn">Continue</button>
     </section>
 
     <!-- QUIZ WINDOW SECTION -->
@@ -50,14 +50,45 @@
           element?
         </h1>
         <div class="options">
-          <p class="option">link</p>
-          <p class="option">href</p>
-          <p class="option">ref</p>
-          <p class="option">newref</p>
+          <div class="option option-green" data-option-no="0">
+            <p>Link</p>
+            <span class="circle circle-green"></span>
+          </div>
+          <div class="option" data-option-no="1">
+            <p>href</p>
+            <span class="circle"></span>
+          </div>
+          <div class="option" data-option-no="2">
+            <p>ref</p>
+            <span class="circle"></span>
+          </div>
+          <div class="option option-red" data-option-no="3">
+            <p>newref</p>
+            <span class="circle circle-red"></span>
+          </div>
         </div>
       </div>
 
-      <p class="counter spacing-box">1 of 4 Questions</p>
+      <div class="quiz-app-footer">
+        <p class="counter spacing-box">
+          <span class="current-question">1</span> of
+          <span class="total-question">4</span> Questions
+        </p>
+        <button class="next-btn btn">Next</button>
+      </div>
+    </section>
+
+    <!-- REWARD SECTION -->
+    <section class="reward-section hidden">
+      <p class="reward-desc">
+        You have completed the Quiz! <br />
+        and nice, you got <span class="correct-answers">2</span> out of
+        <span class="total-question">4</span>
+      </p>
+      <div class="reward-buttons">
+        <button class="retake-btn btn">Retake</button>
+        <button class="exit-btn btn">Exit</button>
+      </div>
     </section>
 
     <script src="script.js"></script>
