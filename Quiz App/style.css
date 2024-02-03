@@ -110,6 +110,16 @@ p {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+}
+
+/* Question timer line  */
+.question-timer {
+  height: 7px;
+  background-color: rgb(224, 215, 215);
+  width: 100%;
+  position: absolute;
+  top: 7rem;
 }
 
 .spacing-box {
@@ -141,15 +151,15 @@ p {
 }
 
 .time-show {
-  background-color: black;
+  background-color: rgb(36, 36, 36);
   color: rgb(239, 239, 239);
-  padding: var(--md-space);
+  padding: var(--md-space) var(--ls-space);
   border-radius: 4px;
 }
 
 .ques-options-container {
   /* margin: var(--md) 0 var(--ls-space) 0; */
-  border-bottom: 2px solid gray;
+  border-bottom: 2px solid rgb(48, 46, 46);
 }
 
 .options {
@@ -168,11 +178,13 @@ p {
   text-align: left;
   text-indent: var(--ls-space);
   border: 2px solid rgb(169, 185, 236);
+  cursor: pointer;
 }
 
 .counter {
-  background-color: red;
   margin-right: auto;
   padding: var(--md-space);
   margin-left: 20px;
+  font-size: 20px;
+  font-weight: 500;
 }
