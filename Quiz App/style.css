@@ -9,6 +9,7 @@
   --primary-font: "Roboto", sans-serif;
   --secondary-font: "Anek Telugu", sans-serif;
   --font-color: #414a4c;
+  --box-shadow: 4px 10px 8px rgba(0, 0, 0, 0.2);
 }
 
 body {
@@ -34,15 +35,27 @@ p {
   font-family: var(--secondary-font);
 }
 
+.display {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
+/* ///////////////// RULES SECTION //////////////// */
 .rules-section {
   background-image: var(--box-color-gradient);
-  box-shadow: 4px 10px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--box-shadow);
   width: 45rem;
   height: 20rem;
   border-radius: var(--border-radius);
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.hidden {
+  display: none;
 }
 
 .rules-heading {
@@ -86,10 +99,67 @@ p {
   transform: scale(1.1);
 }
 
-.display {
-  display: block;
+/* ///////////////// QUIZ SECTION //////////////// */
+
+.quiz-section {
+  background-image: var(--box-color-gradient);
+  width: 40rem;
+  height: 40rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.hidden {
-  display: none;
+.spacing-box {
+  margin: var(--md-space) 0 var(--xl-space) 0;
+  padding: var(--ls-space) var(--ls-space) var(--ls-space) var(--xl-space);
+}
+
+.quiz-header-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid red;
+}
+
+.time-box {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: var(--md-space);
+  width: 10rem;
+  margin: 0 var(--xl-space) 0 0;
+  border-radius: var(--border-radius);
+  background-color: rgb(190, 209, 255);
+  font-weight: bold;
+}
+
+.time-left {
+  font-size: 18px;
+}
+
+.time-show {
+  background-color: black;
+  color: rgb(239, 239, 239);
+  padding: var(--md-space);
+  border-radius: 4px;
+}
+
+.ques-options-container {
+  border: 2px solid green;
+}
+
+.options {
+  border: 2px solid magenta;
+  display: flex;
+  flex-direction: column;
+  gap: var(--md-space);
+  margin: var(--ls-space) 0 0 var(--md-space);
+}
+
+.option {
+  background-color: gray;
 }
