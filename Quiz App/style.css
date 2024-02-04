@@ -108,6 +108,7 @@ p {
   width: 100%;
   position: absolute;
   top: 7rem;
+  transition: all 5s ease-in;
 }
 
 .spacing-box {

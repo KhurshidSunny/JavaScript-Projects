@@ -2,6 +2,8 @@
 
 const btnContinue = document.querySelector(".continue-btn");
 const btnNext = document.querySelector(".next-btn");
+const btnRetak = document.querySelector(".retake-btn");
+const btnExit = document.querySelector(".exit-btn");
 
 const rulesContainer = document.querySelector(".rules-section");
 const quizContainer = document.querySelector(".quiz-section");
@@ -12,11 +14,13 @@ const totalQElement = document.querySelectorAll(".total-question");
 const correctAnsElement = document.querySelector(".correct-answers");
 const curQuestionElement = document.querySelector(".current-question");
 const allCircles = document.querySelectorAll(".circle");
-
+const timer = document.querySelector(".time-show");
+const questionTimerLine = document.querySelector(".question-timer");
 const rewardContainer = document.querySelector(".reward-section");
 
 let curQuestion = 1;
 let correctAnswersDone = 0;
+let nextQuestionGo = false;
 
 const allQuestions = [
   {
@@ -69,34 +73,31 @@ const allQuestions = [
 
 const numOfQuestions = allQuestions.length;
 
-// Continue handler
-btnContinue.addEventListener("click", function () {
-  rulesContainer.classList.add("hidden");
-  quizContainer.classList.remove("hidden");
-});
-
 // reseting all the options
 const resetOptions = function () {
   allOptions.forEach((opt, i) => {
     opt.classList.remove("option-green", "option-red");
     allCircles[i].classList.remove("circle-green", "circle-red");
   });
+  nextQuestionGo = false;
 };
 
 const optionsContainer = document.querySelector(".options");
 
 const optionSelection = function (e) {
   const event = e.target;
-
   const optionElement = event.closest(".option");
   if (!optionElement) return;
   const { optionNo } = optionElement.dataset;
   const selectedOption = allOptions[optionNo].querySelector("p").textContent;
   const correctAns = allQuestions[curQuestion - 1].correctAnswer;
+  questionTimerLine.style.backgroundColor = "red";
+
+  nextQuestionGo = true;
 
   if (correctAns === selectedOption) {
     correctAnswersDone++;
-    console.log(correctAnswersDone);
+
     optionElement.classList.add("option-green");
     allCircles[optionNo].classList.add("circle-green");
   } else {
@@ -134,13 +135,65 @@ const renderQuestion = function (nextQuestion) {
     rewardContainer.classList.remove("hidden");
     correctAnsElement.textContent = correctAnswersDone;
   }
+
   curQuestion++;
   if (curQuestion - 1 === numOfQuestions) return;
   initializer(nextQuestion);
   resetOptions();
 };
 
+// set Time for each question
+const setQuestionTimer = function () {
+  let time = 4;
+  let nextQ = 1;
+
+  const questionTimer = setInterval(function () {
+    {
+      timer.textContent = `${time == 10 ? "" : "0"}${time}`;
+      time--;
+
+      if (time == 0) {
+        renderQuestion(nextQ);
+        time = 4;
+        nextQ++;
+      }
+
+      if (nextQ == 5) {
+        clearInterval(questionTimer);
+        time = 10;
+        nextQ = 1;
+      }
+    }
+  }, 1 * 1000);
+};
+
+// Continue handler
+btnContinue.addEventListener("click", function () {
+  rulesContainer.classList.add("hidden");
+  quizContainer.classList.remove("hidden");
+  renderQuestion(0);
+  curQuestion = 1;
+});
+
 // Next button handler
+
 btnNext.addEventListener("click", function () {
+  if (!nextQuestionGo) return;
   renderQuestion(curQuestion);
 });
+
+btnRetak.addEventListener("click", function () {
+  rewardContainer.classList.add("hidden");
+  rulesContainer.classList.add("hidden");
+  quizContainer.classList.remove("hidden");
+  renderQuestion(0);
+  curQuestion = 1;
+  setQuestionTimer();
+  // timer.textContent = 4;
+});
+
+btnExit.addEventListener("click", function () {
+  rewardContainer.classList.add("hidden");
+  rulesContainer.classList.remove("hidden");
+});
+// setQuestionTimer();
