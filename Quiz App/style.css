@@ -103,12 +103,28 @@ p {
 
 /* Question timer line  */
 .question-timer {
-  height: 7px;
-  background-color: rgb(224, 215, 215);
+  height: 6px;
+  background-color: rgb(233, 213, 213);
   width: 100%;
+  /* width: 0; */
   position: absolute;
   top: 7rem;
-  transition: all 5s ease-in;
+  transition: width 1s linear;
+  border-radius: 0;
+}
+
+/* .question-timer.active {
+  background-color: red;
+  transition: width 1s linear;
+} */
+
+.question-timer .inner {
+  width: 50%;
+  height: 60px;
+  background-color: red;
+  /* position: absolute; */
+  top: 0;
+  right: 0;
 }
 
 .spacing-box {

@@ -1,4 +1,4 @@
-// Selectors
+import { resetOptions, allOptions, allCircles } from "./resetOptions.js";
 
 const btnContinue = document.querySelector(".continue-btn");
 const btnNext = document.querySelector(".next-btn");
@@ -8,15 +8,16 @@ const btnExit = document.querySelector(".exit-btn");
 const rulesContainer = document.querySelector(".rules-section");
 const quizContainer = document.querySelector(".quiz-section");
 
-const allOptions = document.querySelectorAll(".option");
+// const allOptions = document.querySelectorAll(".option");
 const questionElement = document.querySelector(".question");
 const totalQElement = document.querySelectorAll(".total-question");
 const correctAnsElement = document.querySelector(".correct-answers");
 const curQuestionElement = document.querySelector(".current-question");
-const allCircles = document.querySelectorAll(".circle");
+// const allCircles = document.querySelectorAll(".circle");
 const timer = document.querySelector(".time-show");
 const questionTimerLine = document.querySelector(".question-timer");
 const rewardContainer = document.querySelector(".reward-section");
+const optionsContainer = document.querySelector(".options");
 
 let curQuestion = 1;
 let correctAnswersDone = 0;
@@ -73,16 +74,16 @@ const allQuestions = [
 
 const numOfQuestions = allQuestions.length;
 
-// reseting all the options
-const resetOptions = function () {
-  allOptions.forEach((opt, i) => {
-    opt.classList.remove("option-green", "option-red");
-    allCircles[i].classList.remove("circle-green", "circle-red");
-  });
-  nextQuestionGo = false;
-};
+// //////////////// ALL FUNCTIONS ////////////////////////
 
-const optionsContainer = document.querySelector(".options");
+// reseting all the options
+// const resetOptions = function () {
+//   allOptions.forEach((opt, i) => {
+//     opt.classList.remove("option-green", "option-red");
+//     allCircles[i].classList.remove("circle-green", "circle-red");
+//   });
+//   nextQuestionGo = false;
+// };
 
 const optionSelection = function (e) {
   const event = e.target;
@@ -91,7 +92,6 @@ const optionSelection = function (e) {
   const { optionNo } = optionElement.dataset;
   const selectedOption = allOptions[optionNo].querySelector("p").textContent;
   const correctAns = allQuestions[curQuestion - 1].correctAnswer;
-  questionTimerLine.style.backgroundColor = "red";
 
   nextQuestionGo = true;
 
@@ -112,6 +112,43 @@ const optionSelection = function (e) {
   }
 };
 optionsContainer.addEventListener("click", optionSelection);
+
+let secondsElapsed = 0;
+let nextQ = 1;
+let time = 10;
+
+const widthIncrement = 100 / time;
+const updateTimerWidth = function (seconElapsed) {
+  const newWidth = widthIncrement * seconElapsed;
+  questionTimerLine.style.width = `${newWidth}%`;
+};
+
+// set Time for each question
+
+const setQuestionTimer = function () {
+  const questionTimer = setInterval(function () {
+    {
+      secondsElapsed++;
+      timer.textContent = `${time == 10 ? "" : "0"}${time}`;
+      time--;
+      updateTimerWidth(secondsElapsed);
+      if (time == -1) {
+        renderQuestion(nextQ);
+        time = 10;
+        nextQ++;
+        secondsElapsed = 0;
+        questionTimerLine.style.width = "0%";
+      }
+
+      if (nextQ === 5) {
+        clearInterval(questionTimer);
+        time = 10;
+        nextQ = 1;
+        secondsElapsed = 0;
+      }
+    }
+  }, 1000);
+};
 
 // initial values
 const initializer = function (nextQuestion = 0) {
@@ -139,32 +176,7 @@ const renderQuestion = function (nextQuestion) {
   curQuestion++;
   if (curQuestion - 1 === numOfQuestions) return;
   initializer(nextQuestion);
-  resetOptions();
-};
-
-// set Time for each question
-const setQuestionTimer = function () {
-  let time = 4;
-  let nextQ = 1;
-
-  const questionTimer = setInterval(function () {
-    {
-      timer.textContent = `${time == 10 ? "" : "0"}${time}`;
-      time--;
-
-      if (time == 0) {
-        renderQuestion(nextQ);
-        time = 4;
-        nextQ++;
-      }
-
-      if (nextQ == 5) {
-        clearInterval(questionTimer);
-        time = 10;
-        nextQ = 1;
-      }
-    }
-  }, 1 * 1000);
+  resetOptions(nextQuestionGo);
 };
 
 // Continue handler
@@ -189,7 +201,6 @@ btnRetak.addEventListener("click", function () {
   renderQuestion(0);
   curQuestion = 1;
   setQuestionTimer();
-  // timer.textContent = 4;
 });
 
 btnExit.addEventListener("click", function () {
