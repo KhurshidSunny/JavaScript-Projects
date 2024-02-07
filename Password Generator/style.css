@@ -1,0 +1,122 @@
+:root {
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(92, 85, 85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.app-container {
+  background-color: rgb(238, 230, 230);
+  width: 30rem;
+  height: 40rem;
+  padding: 20px 40px;
+}
+
+.app-container h1 {
+  margin-bottom: 30px;
+  font-size: 30px;
+}
+
+.password-display {
+  display: flex;
+  flex-direction: column;
+}
+
+.password-display .input-box {
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid rgb(177, 161, 161);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.input-box .copy-icon {
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.password-display input {
+  width: 80%;
+  padding: 10px 10px;
+  font-size: 20px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+}
+
+.pass-strong {
+  width: 100%;
+  height: 5px;
+  background-color: rgb(208, 215, 105);
+  margin: 20px 0;
+}
+
+.password-display .pass-len {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 20px;
+}
+
+.pass-len-range {
+  margin-top: -10px;
+}
+
+.password-setting {
+  margin: 20px 0;
+}
+
+.setting-box {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 20px;
+  margin: 20px 0;
+}
+.grid-left {
+  /* background-color: green; */
+}
+.grid-right {
+  /* background-color: yellow; */
+}
+
+.setting-box .setting {
+  margin-bottom: 20px;
+  padding: 10px 10px;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 10px;
+}
+
+.setting label {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.setting input[type="checkbox"] {
+  transform: scale(2);
+}
+
+.password-setting .btn-generate-pass {
+  background-color: rgb(91, 109, 215);
+  color: aliceblue;
+  width: 100%;
+  padding: 15px 0;
+  font-size: 20px;
+  border: none;
+  border-radius: 10px;
+  margin-top: 20px;
+}
