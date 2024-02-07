@@ -65,10 +65,16 @@ body {
   background-color: rgb(60, 58, 58);
   border: 2px solid rgb(93, 89, 89);
   font-size: 25px;
-  /* text-indent: 5px; */
+
   border-radius: 8px;
   color: #fff;
   padding: 10px 0;
+}
+
+.post-input textarea::placeholder {
+  color: rgb(139, 128, 128);
+  font-size: 20px;
+  text-indent: 5px;
 }
 
 .btn-post {
@@ -80,4 +86,39 @@ body {
   font-size: 20px;
   text-transform: uppercase;
   cursor: pointer;
+}
+
+/* rating popup */
+.rating-popup {
+  background-color: rgb(60, 58, 58);
+  border: 2px solid rgb(157, 152, 152);
+  border-radius: 8px;
+  width: 26rem;
+  height: 5rem;
+  position: relative;
+}
+.rating-popup p {
+  text-align: center;
+  font-size: 30px;
+  color: rgb(212, 192, 192);
+  font-weight: 500;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.rating-popup button {
+  background-color: transparent;
+  font-size: 15px;
+  border: none;
+  color: rgb(212, 192, 192);
+  text-transform: uppercase;
+  padding: 12px;
+  position: absolute;
+  top: -2px;
+  right: 0;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
 }

@@ -1,7 +1,12 @@
 const starContainer = document.querySelector(".stars");
 const ratingTextEl = document.querySelector(".rating-text");
-
 const stars = document.querySelectorAll(".icon");
+const btnPost = document.querySelector(".btn-post");
+const ratingPopup = document.querySelector(".rating-popup");
+const appContainer = document.querySelector(".app-container");
+
+const btnEdit = document.querySelector(".btn-edit");
+
 const starsText = [
   "Poor  😞 ",
   "Below Average 😐",
@@ -81,3 +86,15 @@ starContainer.addEventListener("mouseover", mouseoverHandler);
 starContainer.addEventListener("mouseout", mouseoutHandler);
 // click  on each star
 starContainer.addEventListener("click", clickHandler);
+
+// post the rating
+btnPost.addEventListener("click", function () {
+  appContainer.classList.add("hidden");
+  ratingPopup.classList.remove("hidden");
+});
+
+// edit button
+btnEdit.addEventListener("click", function () {
+  ratingPopup.classList.add("hidden");
+  appContainer.classList.remove("hidden");
+});
