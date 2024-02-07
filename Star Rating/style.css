@@ -41,8 +41,9 @@ body {
   padding: 10px;
 }
 
-.star {
+.icon {
   font-size: 60px;
+  cursor: pointer;
 }
 
 .rating-part .rating-text {
