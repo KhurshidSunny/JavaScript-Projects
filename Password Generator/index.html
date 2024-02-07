@@ -19,9 +19,10 @@
       <h1 class="heading">password generator</h1>
       <div class="password-display">
         <div class="input-box">
-          <input type="text" />
+          <input class="pass-input" type="text" />
           <i class="fa-regular fa-copy copy-icon"></i>
         </div>
+
         <div class="pass-strong"></div>
         <div class="pass-len">
           <p class="pass-len-text">Password Length</p>
@@ -35,34 +36,34 @@
         <div class="setting-box">
           <div class="grid-left">
             <div class="lowercase setting">
-              <input id="lowercase" type="checkbox" />
+              <input id="lowercase" type="checkbox" class="set" />
               <label for="lowercase">Lowercase (a-z)</label>
             </div>
 
             <div class="numbers setting">
-              <input id="number" type="checkbox" />
+              <input id="number" type="checkbox" class="set" />
               <label for="number">Numbers (0-9)</label>
             </div>
 
             <div class="ducplicate setting">
-              <input id="duplicate" type="checkbox" />
+              <input id="duplicate" type="checkbox" class="set" />
               <label for="duplicate">Exclude Duplicates</label>
             </div>
           </div>
 
           <div class="grid-right">
             <div class="uppercase setting">
-              <input id="uppercase" type="checkbox" />
+              <input id="uppercase" type="checkbox" class="set" />
               <label for="uppercase">Uppercase (A-Z) </label>
             </div>
 
             <div class="symbols setting">
-              <input id="symbols" type="checkbox" />
+              <input id="symbols" type="checkbox" class="set" />
               <label for="symbols">Symbols (!-$^+) </label>
             </div>
 
             <div class="spaces setting">
-              <input id="spaces" type="checkbox" />
+              <input id="spaces" type="checkbox" class="set" />
               <label for="spaces">Include Spaces (A-Z) </label>
             </div>
           </div>
