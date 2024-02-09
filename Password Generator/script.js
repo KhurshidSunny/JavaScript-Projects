@@ -5,6 +5,12 @@ const lowercaseCheck = document.querySelector("#lowercase");
 
 const copyBtn = document.querySelector(".copy-icon");
 
+const inputRangeEl = document.querySelector(".pass-len-range");
+const passLengthText = document.querySelector(".length");
+
+let passLength = 8;
+passLengthText.textContent = passLength;
+
 copyBtn.addEventListener("click", function () {
   // select the text inside the input
   passInputEl.select();
@@ -86,6 +92,11 @@ const passWithoutSpaces = (pass) =>
 
 const passWithoutDuplicates = (pass) => {
   const ans = new Set(pass);
+  return [...ans];
+};
+
+const increaseOrDecreasePassLength = function (pass) {
+  const ans = pass.slice(0, passLength);
   return [...ans].join("");
 };
 
@@ -113,6 +124,14 @@ settingContainer.addEventListener("change", function (e) {
     if (ans) passInputEl.value = ans;
     else passInputEl.value = passwordCopy.join("");
   }
+});
+
+inputRangeEl.addEventListener("input", function (event) {
+  passLengthText.textContent = passLength;
+  const newPass = increaseOrDecreasePassLength(password);
+  passInputEl.value = newPass;
+  passLength = event.target.value;
+  passLengthText.textContent = passLength;
 });
 
 generatPassBtn.addEventListener("click", displayPassword);
