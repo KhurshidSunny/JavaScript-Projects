@@ -3,6 +3,17 @@ const settingContainer = document.querySelector(".setting-box");
 const generatPassBtn = document.querySelector(".btn-generate-pass");
 const lowercaseCheck = document.querySelector("#lowercase");
 
+const copyBtn = document.querySelector(".copy-icon");
+
+copyBtn.addEventListener("click", function () {
+  // select the text inside the input
+  passInputEl.select();
+  const ans = passInputEl.setSelectionRange(0, 99999);
+
+  // copy the selected text to the clipboard
+  document.execCommand("copy");
+});
+
 const randInt = function (min, max) {
   const rand = Math.floor(Math.random() * (max - min + 1) + min);
   return rand;
