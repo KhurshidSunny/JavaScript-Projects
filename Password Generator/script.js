@@ -2,17 +2,14 @@ const passInputEl = document.querySelector(".pass-input");
 const settingContainer = document.querySelector(".setting-box");
 const generatPassBtn = document.querySelector(".btn-generate-pass");
 const lowercaseCheck = document.querySelector("#lowercase");
-
 const copyBtn = document.querySelector(".copy-icon");
-
 const inputRangeEl = document.querySelector(".pass-len-range");
 const passLengthText = document.querySelector(".length");
-
 const passStrongBar = document.querySelector(".pass-strong");
 
 let passLength = 8;
 passLengthText.textContent = passLength;
-passStrongBar.style.width = `${passLength * 5}%`;
+passStrongBar.style.width = 0;
 
 copyBtn.addEventListener("click", function () {
   // select the text inside the input
@@ -79,6 +76,7 @@ const generateRandChar = function (min, max) {
 const displayPassword = function () {
   const ans = generateRandChar(32, 122);
   passInputEl.value = ans;
+  passStrongBar.style.width = `50%`;
 };
 
 const filterChar = (pass, regexPattern) =>
