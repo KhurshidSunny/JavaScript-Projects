@@ -3,28 +3,20 @@ const settingContainer = document.querySelector(".setting-box");
 const generatPassBtn = document.querySelector(".btn-generate-pass");
 const lowercaseCheck = document.querySelector("#lowercase");
 
-// const generateLower = function (min, max) {
-//   const rand = Math.floor(Math.random() * (max - min + 1) + min);
-//   let char = String.fromCharCode(rand);
-//   lower += char;
-// };
-
 const randInt = function (min, max) {
   const rand = Math.floor(Math.random() * (max - min + 1) + min);
   return rand;
 };
-
-const lengthArr = [0, 0, 0, 0];
 let password = [];
 const generateRandChar = function (min, max) {
   password = [];
+  let lengthArr = [0, 0, 0, 0];
   let len = password.length;
 
   while (len < 15) {
     let rand = randInt(min, max);
     let char = String.fromCharCode(rand);
 
-    console.log("loop run");
     // lowercase
     if (rand >= 97 && rand <= 122 && lengthArr[0] < 7) {
       // char = String.fromCharCode(rand);
@@ -62,27 +54,15 @@ const generateRandChar = function (min, max) {
     len = password.length;
   }
 
-  return password;
+  return password.join("");
 };
-
-// const ans = generateRandChar(33, 122);
-// const str = ans.join("");
-// console.log(str);
 
 const displayPassword = function () {
   const ans = generateRandChar(33, 122);
-  const str = ans.join("");
 
-  passInputEl.value = str;
+  passInputEl.value = ans;
 };
 
-// lowercaseCheck.addEventListener("change", function () {
-//   displayPassword();
-// console.log(this);
-// if (this.checked) {
-//   this.disabled = true;
-// }
-// });
 /*
 
 Asscii for symbols
@@ -97,14 +77,22 @@ $=36
 numbers (0-9) = (48-57)
 */
 
-generatPassBtn.addEventListener("click", displayPassword);
-
 settingContainer.addEventListener("change", function (e) {
   const event = e.target;
   if (event.classList.contains("set")) {
     const { settingType } = event.dataset;
-    if (settingType === lowercase) {
-      const lower = password.filter((char) => {});
-    }
+    let eventChecked = event.checked;
+    const passwordCopy = password.slice();
+
+    if (eventChecked) {
+      if (settingType === "lowercase") {
+        const lower = passwordCopy
+          .filter((char) => /[a-z]/.test(char))
+          .join("");
+        passInputEl.value = lower;
+      }
+    } else passInputEl.value = passwordCopy.join("");
   }
 });
+
+generatPassBtn.addEventListener("click", displayPassword);
