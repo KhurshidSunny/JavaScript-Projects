@@ -8,8 +8,11 @@ const copyBtn = document.querySelector(".copy-icon");
 const inputRangeEl = document.querySelector(".pass-len-range");
 const passLengthText = document.querySelector(".length");
 
+const passStrongBar = document.querySelector(".pass-strong");
+
 let passLength = 8;
 passLengthText.textContent = passLength;
+passStrongBar.style.width = `${passLength * 5}%`;
 
 copyBtn.addEventListener("click", function () {
   // select the text inside the input
@@ -128,6 +131,7 @@ settingContainer.addEventListener("change", function (e) {
 
 inputRangeEl.addEventListener("input", function (event) {
   passLengthText.textContent = passLength;
+  passStrongBar.style.width = `${passLength * 7}%`;
   const newPass = increaseOrDecreasePassLength(password);
   passInputEl.value = newPass;
   passLength = event.target.value;
