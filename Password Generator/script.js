@@ -38,7 +38,7 @@ const generateRandChar = function (min, max) {
         rand === 43 ||
         rand === 45 ||
         rand === 94) &&
-      lengthArr[2] < 2
+      lengthArr[2] <= 2
     ) {
       // char = String.fromCharCode(rand);
       password.push(char);
@@ -46,52 +46,61 @@ const generateRandChar = function (min, max) {
     }
 
     // uppercase
-    else if (rand >= 65 && rand <= 90 && lengthArr[3] <= 3) {
+    else if (rand >= 65 && rand <= 90 && lengthArr[3] < 3) {
       // char = String.fromCharCode(rand);
       password.push(char);
       lengthArr[3]++;
     }
     len = password.length;
   }
-
   return password.join("");
 };
 
 const displayPassword = function () {
-  const ans = generateRandChar(33, 122);
-
+  const ans = generateRandChar(32, 122);
   passInputEl.value = ans;
 };
 
-/*
+const filterChar = (pass, regexPattern) =>
+  pass.filter((char) => regexPattern.test(char)).join("");
 
-Asscii for symbols
-!=33
-$=36
--=45
-+=43
-^=94
+const passWithoutSpaces = (pass) =>
+  pass.filter((char) => char !== " ").join("");
 
+// duplicates with filter method
+// const findDuplicates = (pass) =>
+//   pass.filter((char, index, passSelf) => {
+//     return passSelf.indexOf(char) === index;
+//   });
 
-
-numbers (0-9) = (48-57)
-*/
+const passWithoutDuplicates = (pass) => {
+  const ans = new Set(pass);
+  return [...ans].join("");
+};
 
 settingContainer.addEventListener("change", function (e) {
   const event = e.target;
+  let ans = "";
   if (event.classList.contains("set")) {
     const { settingType } = event.dataset;
     let eventChecked = event.checked;
     const passwordCopy = password.slice();
 
     if (eventChecked) {
-      if (settingType === "lowercase") {
-        const lower = passwordCopy
-          .filter((char) => /[a-z]/.test(char))
-          .join("");
-        passInputEl.value = lower;
-      }
-    } else passInputEl.value = passwordCopy.join("");
+      if (settingType === "lowercase") ans = filterChar(passwordCopy, /[a-z]/);
+      else if (settingType === "uppercase")
+        ans = filterChar(passwordCopy, /[A-Z]/);
+      else if (settingType === "number")
+        ans = filterChar(passwordCopy, /[0-9]/);
+      else if (settingType === "symbol")
+        ans = filterChar(passwordCopy, /[-!$^+]/g);
+      else if (settingType === "space") ans = passWithoutSpaces(passwordCopy);
+      else if (settingType === "duplicate")
+        ans = passWithoutDuplicates(passwordCopy);
+    }
+
+    if (ans) passInputEl.value = ans;
+    else passInputEl.value = passwordCopy.join("");
   }
 });
 
