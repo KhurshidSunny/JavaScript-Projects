@@ -1,0 +1,84 @@
+:root {
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.nav-bar {
+  background-color: red;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 40%;
+  list-style-type: none;
+  padding: 15px;
+}
+
+.links .link a {
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.2s ease-in;
+}
+
+.links .link a:hover {
+  color: black;
+}
+
+.mode {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 15px;
+  margin-right: 80px;
+}
+
+.mode p {
+  color: white;
+  font-size: 25px;
+}
+
+.mode .sun-icon {
+  color: white;
+  font-size: 30px;
+  margin-left: 20px;
+}
+
+.mode .toggle-container {
+  width: 110px;
+  height: 50px;
+  margin-left: 40px;
+  background-color: yellow;
+  border-radius: 50px;
+  position: relative;
+}
+
+.toggle-button {
+  width: 50px;
+  height: 100%;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 3px;
+  background-color: magenta;
+  cursor: pointer;
+  border: none;
+  transition: all 0.4s ease;
+}
+
+.turn-on {
+  position: absolute;
+  top: 0;
+  left: 55px;
+}

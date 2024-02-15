@@ -8,23 +8,16 @@ const passLengthText = document.querySelector(".length");
 const passStrongBar = document.querySelector(".pass-strong");
 
 let passLength = 8;
+let password = [];
 passLengthText.textContent = passLength;
 passStrongBar.style.width = 0;
 
-copyBtn.addEventListener("click", function () {
-  // select the text inside the input
-  passInputEl.select();
-  const ans = passInputEl.setSelectionRange(0, 99999);
-
-  // copy the selected text to the clipboard
-  document.execCommand("copy");
-});
-
+////////// FUNCTIONS ///////////////
 const randInt = function (min, max) {
   const rand = Math.floor(Math.random() * (max - min + 1) + min);
   return rand;
 };
-let password = [];
+
 const generateRandChar = function (min, max) {
   password = [];
   let lengthArr = [0, 0, 0, 0];
@@ -100,6 +93,17 @@ const increaseOrDecreasePassLength = function (pass) {
   const ans = pass.slice(0, passLength);
   return [...ans].join("");
 };
+
+///////////////////////EVENTS//////////////////////
+
+copyBtn.addEventListener("click", function () {
+  // select the text inside the input
+  passInputEl.select();
+  const ans = passInputEl.setSelectionRange(0, 99999);
+
+  // copy the selected text to the clipboard
+  document.execCommand("copy");
+});
 
 settingContainer.addEventListener("change", function (e) {
   const event = e.target;
