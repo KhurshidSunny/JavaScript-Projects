@@ -133,12 +133,7 @@ section {
   left: 55px;
 }
 
-.hero {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-#hero .hero-heading {
+#home .hero-heading {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -149,6 +144,7 @@ section {
 
 .about-container {
   display: flex;
+  margin-top: 40px;
 }
 
 .image-container {
