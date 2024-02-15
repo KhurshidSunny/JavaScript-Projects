@@ -1,38 +1,78 @@
+@import url("https://fonts.googleapis.com/css?family=Comfortaa|Kaushan+Script|Oswald&display=swap");
+
 :root {
+  --primary-color: rgb(255, 92, 92);
+  --primary-variant: #ff2d2d;
+  --secondary-color: #1b9999;
+  --on-primary: rgb(250, 250, 250);
+  --on-background: rgb(66, 66, 66);
+  --on-background-alt: rgba(66, 66, 66, 0.7);
+  --background: rgb(255, 255, 255);
+  --box-shadow: 0 5px 20px 1px rgba(0, 0, 0, 0.5);
+}
+
+body {
+  color: var(--on-background);
+  background-color: var(--background);
+  font-family: Comfortaa, sans-serif;
+}
+
+h1 {
+  font-family: Kaushan Script, sans-serif;
+  font-size: 100px;
+  margin-bottom: 0;
+}
+
+h2 {
+  font-size: 32px;
+  font-weight: normal;
+  color: var(--on-background-alt);
+}
+
+section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 .nav-bar {
-  background-color: red;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100vw;
+  z-index: 10;
+  position: fixed;
 }
 
 .links {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
   width: 40%;
   list-style-type: none;
   padding: 15px;
+  margin-left: 60px;
 }
 
 .links .link a {
-  color: white;
+  color: var(--primary-variant);
   font-size: 30px;
-  font-weight: bold;
+  font-family: Oswald, sans-serif;
   text-decoration: none;
   transition: all 0.2s ease-in;
 }
 
 .links .link a:hover {
-  color: black;
+  color: var(--on-background);
 }
 
 .mode {
@@ -45,13 +85,12 @@
 }
 
 .mode p {
-  color: white;
   font-size: 25px;
 }
 
 .mode .sun-icon {
-  color: white;
-  font-size: 30px;
+  color: var(--on-background);
+  font-size: 40px;
   margin-left: 20px;
 }
 
@@ -59,7 +98,7 @@
   width: 110px;
   height: 50px;
   margin-left: 40px;
-  background-color: yellow;
+  background-color: rgb(203, 199, 199);
   border-radius: 50px;
   position: relative;
 }
@@ -71,7 +110,7 @@
   position: absolute;
   top: 0;
   left: 3px;
-  background-color: magenta;
+  background-color: var(--background);
   cursor: pointer;
   border: none;
   transition: all 0.4s ease;
@@ -81,4 +120,103 @@
   position: absolute;
   top: 0;
   left: 55px;
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#hero .hero-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* About section */
+
+.about-container {
+  display: flex;
+}
+
+.image-container {
+  border: 1px solid var(--secondary-color);
+  border-radius: 10px;
+  padding: 10px 20px;
+  margin-right: 25px;
+  width: auto;
+  background: var(--background);
+  box-shadow: var(--box-shadow);
+}
+
+img {
+  height: 300px;
+  width: 300px;
+}
+
+/* Projects Section */
+.buttons {
+  margin-top: 15px;
+  margin-bottom: 50px;
+}
+
+.buttons button {
+  min-width: 100px;
+  height: 40px;
+  cursor: pointer;
+  border-radius: 10px;
+  margin-right: 10px;
+  border: 2px solid var(--primary-color);
+  font-size: 15px;
+  outline: none;
+}
+
+button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+button:hover:not(.outline) {
+  filter: brightness(110%);
+}
+
+.primary {
+  background: var(--primary-color);
+  color: var(--on-primary);
+}
+
+.secondary {
+  border: 2px solid var(--secondary-color);
+}
+
+.secondary,
+.secondary:hover,
+.outline.secondary:hover {
+  background: var(--secondary-color);
+  color: var(--on-primary);
+}
+
+.outline {
+  background: var(--background);
+  color: var(--on-background);
+}
+
+.outline:hover {
+  background: var(--primary-color);
+  color: var(--on-primary);
+}
+
+.text-box {
+  width: 40%;
+  text-align: justify;
+  background: rgb(0 0 0 / 50%);
+  color: var(--on-primary);
+  border-radius: 10px;
+  padding: 30px;
+}
+
+p {
+  margin: 0;
+  line-height: 25px;
 }
