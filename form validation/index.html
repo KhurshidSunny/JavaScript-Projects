@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Validation</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app-container">
+      <h1 id="heading">Sign up Today</h1>
+      <form id="form">
+        <!-- FULL NAME -->
+        <div class="name input-box">
+          <label for="full-name">Full Name</label>
+          <input
+            data-input="name"
+            type="name"
+            class="input"
+            id="full-name"
+            placeholder="Full Name"
+          />
+        </div>
+
+        <!-- PHONE NUMBER -->
+        <div class="phone input-box">
+          <label for="phone-number">Phone Number</label>
+          <input
+            data-input="phone"
+            type="text"
+            class="input"
+            id="phone-number"
+            placeholder="555-555-5555"
+          />
+        </div>
+
+        <!-- EMAIL ADDRESS -->
+        <div class="email input-box">
+          <label for="email-address">Email Address</label>
+          <input
+            data-input="email"
+            type="email"
+            class="input"
+            id="email-address"
+            placeholder="email@address.com"
+          />
+        </div>
+
+        <!-- WEBSITE URL -->
+        <div class="website input-box">
+          <label for="website-url">Website URL</label>
+          <input
+            data-input="website"
+            type="url"
+            class="input"
+            id="website-url"
+            placeholder="https://khurshid.dev"
+          />
+        </div>
+
+        <!-- PASSWORD -->
+        <div class="password input-box">
+          <label for="password">Password</label>
+          <input
+            data-input="password"
+            type="password"
+            class="input"
+            placeholder="password"
+            id="password"
+          />
+        </div>
+
+        <!-- CONFIRM PASSWORD -->
+        <div class="confirm-password input-box">
+          <label for="confirm-password">Password</label>
+          <input
+            data-input="confirm-password"
+            type="password"
+            class="input"
+            placeholder="confirm password"
+            id="confirm-password"
+          />
+        </div>
+
+        <button class="register-btn">Register</button>
+      </form>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,76 @@
+* root {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.app-container {
+  display: flex;
+  width: 30rem;
+  height: 45rem;
+  flex-direction: column;
+  border: 2px solid red;
+  padding: 10px 30px;
+}
+
+#heading {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#form {
+  display: flex;
+  flex-direction: column;
+  /* border: 2px solid green; */
+}
+
+.input-box {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px 0;
+}
+
+.input-box label {
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 2px;
+}
+
+.input-box input {
+  padding: 10px 10px;
+  border-radius: 8px;
+  outline: none;
+  font-size: 20px;
+  color: rgb(66, 66, 66);
+}
+
+.input-box input::placeholder {
+  color: grey;
+}
+
+.register-btn {
+  background-color: rgb(73, 73, 229);
+  color: rgb(225, 226, 226);
+  padding: 10px 0;
+  border: none;
+  border-radius: 8px;
+  font-size: 20px;
+  letter-spacing: 3px;
+  margin-top: 20px;
+}
+
+.border-red {
+  border: 2px solid red;
+}
+
+.border-green {
+  border: 2px solid green;
+}
