@@ -8,12 +8,12 @@ const registerBtn = document.querySelector(".register-btn");
 const allInputs = document.querySelectorAll(".input");
 const form = document.querySelector("#form");
 
-let fullName = "";
-let phoneNo = "";
-let email = "";
-let websiteUrl = "";
-let password = "";
-let confirmPassword = "";
+// let fullName = "";
+// let phoneNo = "";
+// let email = "";
+// let websiteUrl = "";
+// let password = "";
+// let confirmPassword = "";
 
 const validated = function (element) {
   element.classList.remove("border-red");
@@ -42,7 +42,27 @@ const validateEmail = function (email, element) {
 };
 
 const validateWebsiteUrl = function (url, element) {
-  if (url.startsWith("https//") && url.length >= 12) validated(element);
+  if (url.startsWith("https//:") && url.length >= 12) validated(element);
+  else inValidate(element);
+};
+
+let passwordGlob = "";
+
+const validatePassword = function (password, element) {
+  passwordGlob = password;
+  const regexSymbol = /[\!\@\#\$\%\^\&\*\+]/;
+  const regexNumber = /[0-9]/;
+  if (
+    password.length >= 4 &&
+    regexSymbol.test(password) &&
+    regexNumber.test(password)
+  ) {
+    validated(element);
+  } else inValidate(element);
+};
+
+const validateConfirmPassword = function (pass, element) {
+  if (pass === passwordGlob) validated(element);
   else inValidate(element);
 };
 
@@ -62,11 +82,18 @@ form.addEventListener("input", function (e) {
 
     // validating website url
     if (input === "website") validateWebsiteUrl(event.value, event);
+
+    // validating password
+    if (input === "password") validatePassword(event.value, event);
+
+    // validating cofirm password
+    if (input === "confirm-password")
+      validateConfirmPassword(event.value, event);
   }
 });
 
 registerBtn.addEventListener("click", function (e) {
-  // e.preventDefault();
+  e.preventDefault();
   if (
     !fullName &&
     !phoneNo &&
