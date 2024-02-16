@@ -15,19 +15,35 @@ let websiteUrl = "";
 let password = "";
 let confirmPassword = "";
 
-const Validated = function () {
-  nameInputEl.classList.remove("border-red");
-  nameInputEl.classList.add("border-green");
+const validated = function (element) {
+  element.classList.remove("border-red");
+  element.classList.add("border-green");
 };
 
-const inValidate = function () {
-  nameInputEl.classList.remove("border-green");
-  nameInputEl.classList.add("border-red");
+const inValidate = function (element) {
+  element.classList.remove("border-green");
+  element.classList.add("border-red");
 };
 
-const validateName = function (name) {
-  if (name.length >= 6) Validated();
-  else inValidate();
+const validateName = function (name, element) {
+  if (name.length >= 6) validated(element);
+  else inValidate(element);
+};
+const validatePhone = function (phNumber, element) {
+  const digitRegex = /^[0-9]+$/;
+  if (digitRegex.test(phNumber) && phNumber.length === 11) validated(element);
+  else inValidate(element);
+};
+
+const validateEmail = function (email, element) {
+  const regex = /^[^@]+@[^@]+\.[^@]+$/;
+  if (email.length >= 5 && regex.test(email)) validated(element);
+  else inValidate(element);
+};
+
+const validateWebsiteUrl = function (url, element) {
+  if (url.startsWith("https//") && url.length >= 12) validated(element);
+  else inValidate(element);
 };
 
 form.addEventListener("input", function (e) {
@@ -35,16 +51,22 @@ form.addEventListener("input", function (e) {
   if (event.classList.contains("input")) {
     const { input } = event.dataset;
 
-    // let inputValue = event.value;
-    if (input === "name") validateName(event.value);
+    // validdating name
+    if (input === "name") validateName(event.value, event);
 
-    // if (input === "phone" && inputValue.length === 11) Validated();
-    // else inValidate();
+    // validating phone number
+    if (input === "phone") validatePhone(event.value, event);
+
+    // validating email address
+    if (input === "email") validateEmail(event.value, event);
+
+    // validating website url
+    if (input === "website") validateWebsiteUrl(event.value, event);
   }
 });
 
 registerBtn.addEventListener("click", function (e) {
-  e.preventDefault();
+  // e.preventDefault();
   if (
     !fullName &&
     !phoneNo &&
