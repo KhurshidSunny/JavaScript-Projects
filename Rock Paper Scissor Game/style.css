@@ -69,6 +69,10 @@ body {
   cursor: pointer;
 }
 
+.computer .icon-box .icon {
+  color: red;
+}
+
 .game-setting {
   display: flex;
   align-items: center;
@@ -89,4 +93,9 @@ body {
 
 .win-text {
   margin-right: 20px;
+}
+
+.selected {
+  color: black;
+  background-color: rgb(26, 227, 167);
 }

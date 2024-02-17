@@ -18,25 +18,34 @@
     <div class="app-container">
       <h1 class="heading">Rock Paper Scissor</h1>
       <div class="game-container">
-        <div class="player-container">
+        <div class="player-container player">
           <p class="score player-selection">
             Your - 1 <span> --- Lizard</span>
           </p>
-          <div class="icon-box">
-            <i class="fa-solid fa-hand-fist icon"></i>
-            <i class="fa-regular fa-hand icon"></i>
-            <i class="fa-regular fa-hand-peace icon"></i>
+          <div class="icon-box player-icons">
+            <i class="fa-solid fa-hand-fist icon" data-option="rock"></i>
+            <i class="fa-regular fa-hand icon" data-option="paper"></i>
+            <i class="fa-regular fa-hand-peace icon" data-option="scissor"></i>
           </div>
         </div>
 
-        <div class="player-container">
+        <div class="player-container computer">
           <p class="score computer-selection">
             Computer - 1 <span> --- Lizard</span>
           </p>
           <div class="icon-box">
-            <i class="fa-solid fa-hand-fist icon"></i>
-            <i class="fa-regular fa-hand icon"></i>
-            <i class="fa-regular fa-hand-peace icon"></i>
+            <i
+              class="fa-solid fa-hand-fist icon com-icon"
+              data-com-option="rock"
+            ></i>
+            <i
+              class="fa-regular fa-hand icon com-icon"
+              data-com-option="paper"
+            ></i>
+            <i
+              class="fa-regular fa-hand-peace icon com-icon"
+              data-com-option="scissor"
+            ></i>
           </div>
         </div>
 
