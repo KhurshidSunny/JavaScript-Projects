@@ -1,0 +1,92 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.app-container {
+  width: 25rem;
+  height: 35rem;
+  box-shadow: inset 5px 5px 8px rgba(0, 0, 0, 0.3),
+    5px 5px 8px rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+}
+
+.app-container .heading {
+  background-color: rgb(238, 44, 212);
+  color: rgb(224, 219, 224);
+  text-align: center;
+  padding: 15px 0;
+  margin-bottom: 20px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.game-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.player-container {
+  width: 100%;
+  padding: 20px 30px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.score {
+  color: black;
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.score span {
+  color: rgb(238, 44, 212);
+}
+
+.icon-box {
+  padding: 20px 0;
+  border-radius: 8px;
+  justify-content: space-around;
+  display: flex;
+  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.3);
+}
+.icon-box .icon {
+  color: blue;
+  font-size: 3rem;
+  cursor: pointer;
+}
+
+.game-setting {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.game-setting button {
+  width: 60px;
+  height: 60px;
+  font-size: 50px;
+  border: none;
+  margin-left: 20px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.win-text {
+  margin-right: 20px;
+}
