@@ -18,6 +18,7 @@ body {
   flex-direction: column;
   border: 2px solid red;
   padding: 10px 30px;
+  background-image: linear-gradient(to bottom right, #1eb2e4, #6b5f8b);
 }
 
 #heading {
@@ -36,6 +37,7 @@ body {
   flex-direction: column;
   gap: 5px;
   padding: 10px 0;
+  box-sizing: border-box;
 }
 
 .input-box label {
@@ -49,7 +51,9 @@ body {
   border-radius: 8px;
   outline: none;
   font-size: 20px;
-  color: rgb(66, 66, 66);
+  color: rgb(27, 26, 26);
+  background-color: rgb(251, 244, 244);
+  box-sizing: border-box;
 }
 
 .input-box input::placeholder {
@@ -64,14 +68,14 @@ body {
   border-radius: 8px;
   font-size: 20px;
   letter-spacing: 3px;
-  margin-top: 20px;
+  margin-top: 10px;
   cursor: pointer;
 }
 
 .border-red {
-  border: 2px solid red;
+  border: 2px solid rgb(243, 21, 21);
 }
 
 .border-green {
-  border: 2px solid green;
+  border: 2px solid rgb(6, 238, 6);
 }

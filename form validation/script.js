@@ -8,12 +8,12 @@ const registerBtn = document.querySelector(".register-btn");
 const allInputs = document.querySelectorAll(".input");
 const form = document.querySelector("#form");
 
-// let fullName = "";
-// let phoneNo = "";
-// let email = "";
-// let websiteUrl = "";
-// let password = "";
-// let confirmPassword = "";
+let fullName = "";
+let phoneNo = "";
+let emailAdd = "";
+let websiteUrl = "";
+let password = "";
+let confirmPassword = "";
 
 const validated = function (element) {
   element.classList.remove("border-red");
@@ -26,44 +26,74 @@ const inValidate = function (element) {
 };
 
 const validateName = function (name, element) {
-  if (name.length >= 6) validated(element);
-  else inValidate(element);
+  fullName = name;
+  if (name.length >= 6) {
+    validated(element);
+    return true;
+  } else {
+    inValidate(element);
+    return false;
+  }
 };
 const validatePhone = function (phNumber, element) {
+  phoneNo = phNumber;
   const digitRegex = /^[0-9]+$/;
-  if (digitRegex.test(phNumber) && phNumber.length === 11) validated(element);
-  else inValidate(element);
+  if (digitRegex.test(phNumber) && phNumber.length === 11) {
+    validated(element);
+    return true;
+  } else {
+    inValidate(element);
+    return false;
+  }
 };
 
 const validateEmail = function (email, element) {
+  emailAdd = email;
   const regex = /^[^@]+@[^@]+\.[^@]+$/;
-  if (email.length >= 5 && regex.test(email)) validated(element);
-  else inValidate(element);
+  if (email.length >= 5 && regex.test(email)) {
+    validated(element);
+    return true;
+  } else {
+    inValidate(element);
+    return false;
+  }
 };
 
 const validateWebsiteUrl = function (url, element) {
-  if (url.startsWith("https//:") && url.length >= 12) validated(element);
-  else inValidate(element);
+  websiteUrl = url;
+  if (url.startsWith("https//:") && url.length >= 12) {
+    validated(element);
+    return true;
+  } else {
+    inValidate(element);
+    return false;
+  }
 };
 
-let passwordGlob = "";
-
-const validatePassword = function (password, element) {
-  passwordGlob = password;
+const validatePassword = function (pass, element) {
+  password = pass;
   const regexSymbol = /[\!\@\#\$\%\^\&\*\+]/;
   const regexNumber = /[0-9]/;
-  if (
-    password.length >= 4 &&
-    regexSymbol.test(password) &&
-    regexNumber.test(password)
-  ) {
-    validated(element);
-  } else inValidate(element);
+  if (pass.length >= 4 && regexSymbol.test(pass) && regexNumber.test(pass)) {
+    {
+      validated(element);
+      return true;
+    }
+  } else {
+    inValidate(element);
+    return false;
+  }
 };
 
 const validateConfirmPassword = function (pass, element) {
-  if (pass === passwordGlob) validated(element);
-  else inValidate(element);
+  confirmPassword = pass;
+  if (pass === password && pass.length >= 4) {
+    validated(element);
+    return true;
+  } else {
+    inValidate(element);
+    return false;
+  }
 };
 
 form.addEventListener("input", function (e) {
@@ -94,14 +124,20 @@ form.addEventListener("input", function (e) {
 
 registerBtn.addEventListener("click", function (e) {
   e.preventDefault();
-  if (
-    !fullName &&
-    !phoneNo &&
-    !email &&
-    !websiteUrl &&
-    !password &&
-    !confirmPassword
-  ) {
-    // allInputs.forEach((inp) => inp.classList.add("border-red"));
-  }
+
+  if (validateName(fullName, allInputs[0]));
+  if (validatePhone(phoneNo, allInputs[1]));
+  if (validateEmail(emailAdd, allInputs[2]));
+  if (validateWebsiteUrl(websiteUrl, allInputs[3]));
+  if (validatePassword(password, allInputs[4]));
+  if (validateConfirmPassword(confirmPassword, allInputs[5]));
+
+  const user = {
+    fullName,
+    phoneNo,
+    emailAdd,
+    websiteUrl,
+  };
+
+  console.log(user);
 });
