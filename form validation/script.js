@@ -6,7 +6,9 @@ const passwordInputEl = document.querySelector("#password");
 const confirmPasswordInputEl = document.querySelector("#confirm-password");
 const registerBtn = document.querySelector(".register-btn");
 const allInputs = document.querySelectorAll(".input");
+const formContainer = document.querySelector(".app-container");
 const form = document.querySelector("#form");
+const submitWindow = document.querySelector(".success-msg-container");
 
 let fullName = "";
 let phoneNo = "";
@@ -124,13 +126,22 @@ form.addEventListener("input", function (e) {
 
 registerBtn.addEventListener("click", function (e) {
   e.preventDefault();
+  const nameValidate = validateName(fullName, allInputs[0]);
+  const phoneValidate = validatePhone(phoneNo, allInputs[1]);
+  const emailValidate = validateEmail(emailAdd, allInputs[2]);
+  const urlValidate = validateWebsiteUrl(websiteUrl, allInputs[3]);
+  const passValidate = validatePassword(password, allInputs[4]);
+  const confirmPassValidate = validateConfirmPassword(
+    confirmPassword,
+    allInputs[5]
+  );
 
-  if (validateName(fullName, allInputs[0]));
-  if (validatePhone(phoneNo, allInputs[1]));
-  if (validateEmail(emailAdd, allInputs[2]));
-  if (validateWebsiteUrl(websiteUrl, allInputs[3]));
-  if (validatePassword(password, allInputs[4]));
-  if (validateConfirmPassword(confirmPassword, allInputs[5]));
+  if (nameValidate);
+  if (phoneValidate);
+  if (emailValidate);
+  if (urlValidate);
+  if (passValidate);
+  if (confirmPassValidate);
 
   const user = {
     fullName,
@@ -138,6 +149,18 @@ registerBtn.addEventListener("click", function (e) {
     emailAdd,
     websiteUrl,
   };
+
+  if (
+    nameValidate &&
+    phoneValidate &&
+    emailValidate &&
+    urlValidate &&
+    passValidate &&
+    confirmPassValidate
+  ) {
+    formContainer.classList.add("hidden");
+    submitWindow.classList.remove("hidden");
+  }
 
   console.log(user);
 });

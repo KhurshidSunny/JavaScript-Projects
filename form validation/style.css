@@ -16,9 +16,10 @@ body {
   width: 30rem;
   height: 45rem;
   flex-direction: column;
-  border: 2px solid red;
   padding: 10px 30px;
   background-image: linear-gradient(to bottom right, #1eb2e4, #6b5f8b);
+  border-radius: 10px;
+  box-shadow: 5px 8px 8px rgba(0, 0, 0, 0.3);
 }
 
 #heading {
@@ -61,7 +62,7 @@ body {
 }
 
 .register-btn {
-  background-color: rgb(73, 73, 229);
+  background-color: rgb(9, 30, 56);
   color: rgb(225, 226, 226);
   padding: 10px 0;
   border: none;
@@ -72,10 +73,37 @@ body {
   cursor: pointer;
 }
 
+/* success message */
+.success-msg-container {
+  width: 25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #4f5456;
+  color: #fbfbfb;
+  border-radius: 12px;
+  box-shadow: 8px 6px 10px rgba(0, 0, 0, 0.3);
+  padding: 25px 20px;
+}
+
+.success-msg-container .check-icon {
+  font-size: 40px;
+  font-weight: bolder;
+  padding: 15px;
+  border-radius: 50%;
+  color: #4f5456;
+  background-color: white;
+}
+
 .border-red {
   border: 2px solid rgb(243, 21, 21);
 }
 
 .border-green {
   border: 2px solid rgb(6, 238, 6);
+}
+
+.hidden {
+  display: none;
 }
