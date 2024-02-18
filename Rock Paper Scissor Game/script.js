@@ -1,3 +1,13 @@
+////// import
+
+import {
+  stopConfetti,
+  stopConfettiInner,
+  startConfetti,
+  removeConfetti,
+  removeConfettiInner,
+} from "./confetti.js";
+
 const playerIconContainer = document.querySelector(".player-icons");
 const computerIconsEl = document.querySelectorAll(".com-icon");
 const playerScoreEl = document.querySelector(".player-score");
@@ -23,6 +33,8 @@ const removeSelectedOptins = function () {
 
 // reseting the game
 const resetGame = function () {
+  stopConfettiInner();
+  removeConfettiInner();
   playerScoreEl.textContent = "";
   comScoreEl.textContent = "";
   playerOptEl.textContent = "";
@@ -41,20 +53,26 @@ const playerSelectOption = function (playerOption, event) {
 
 // Win and losing game rules
 const winAndLose = function (playerOption, computerOption) {
+  stopConfetti();
+  removeConfetti();
   if (playerOption === computerOption) {
     winText.textContent = "It's Tie";
   } else if (playerOption === "rock" && computerOption === "scissor") {
-    // event.classList.add("selected");
     playerScore++;
+    startConfetti();
   } else if (playerOption === "scissor" && computerOption === "paper") {
     playerScore++;
+    startConfetti();
     winText.textContent = "You win";
   } else if (playerOption === "paper" && computerOption === "rock") {
     playerScore++;
+    startConfetti();
     winText.textContent = "You win";
   } else {
     comScore++;
     winText.textContent = "Computer win";
+    stopConfetti();
+    removeConfetti();
   }
 };
 
@@ -69,13 +87,14 @@ const displayScoreAndOption = function (playerOption, computerOption) {
 // Computer selection otpion
 const computerSelection = function () {
   const randInt = Math.floor(Math.random() * 3);
-  const comOption = gameOptions[randInt];
+  const comOpt = gameOptions[randInt];
+
   computerIconsEl.forEach((opt) => {
-    if (comOption === opt.dataset.comOption) {
+    if (comOpt === opt.dataset.comOption) {
       opt.classList.add("selected");
     }
   });
-  return comOption;
+  return comOpt;
 };
 
 // EVENT LISTNERS

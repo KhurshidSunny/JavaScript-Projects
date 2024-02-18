@@ -100,3 +100,10 @@ body {
   color: black;
   background-color: rgb(26, 227, 167);
 }
+
+#confetti-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+}
