@@ -7,6 +7,12 @@ import {
   removeConfetti,
   removeConfettiInner,
 } from "./confetti.js";
+import { removeSelectedOptins } from "./features/removeSelectedOptions.js";
+import { resetGame } from "./features/resetGame.js";
+import { playerSelectionOption } from "./features/playerSelectionOption.js";
+import { winAndLose } from "./features/winAndLose.js";
+import { displayScoreAndOption } from "./features/displayScoreAndOption.js";
+import { computerSelection } from "./features/computerSelection.js";
 
 const playerIconContainer = document.querySelector(".player-icons");
 const computerIconsEl = document.querySelectorAll(".com-icon");
@@ -18,84 +24,17 @@ const winText = document.querySelector(".win-text");
 const repeatBtn = document.querySelector(".repeat-btn");
 
 const gameOptions = ["rock", "paper", "scissor"];
-let comScore = 0;
-let playerScore = 0;
 
 // FUNCTIONS AND HANDLERS
 
 // Removing all the options which are selected
-const removeSelectedOptins = function () {
-  playerIconContainer.querySelectorAll(".icon").forEach((opt, i) => {
-    opt.classList.remove("selected");
-    computerIconsEl[i].classList.remove("selected");
-  });
-};
+removeSelectedOptins();
 
 // reseting the game
-const resetGame = function () {
-  stopConfettiInner();
-  removeConfettiInner();
-  playerScoreEl.textContent = "";
-  comScoreEl.textContent = "";
-  playerOptEl.textContent = "";
-  comOptEl.textContent = "";
-  winText.textContent = "";
-  removeSelectedOptins();
-};
 resetGame();
 
-// option that the player will select, will be highleted
-const playerSelectOption = function (playerOption, event) {
-  if (playerOption === "rock") event.classList.add("selected");
-  if (playerOption === "paper") event.classList.add("selected");
-  if (playerOption === "scissor") event.classList.add("selected");
-};
-
-// Win and losing game rules
-const winAndLose = function (playerOption, computerOption) {
-  stopConfetti();
-  removeConfetti();
-  if (playerOption === computerOption) {
-    winText.textContent = "It's Tie";
-  } else if (playerOption === "rock" && computerOption === "scissor") {
-    playerScore++;
-    startConfetti();
-  } else if (playerOption === "scissor" && computerOption === "paper") {
-    playerScore++;
-    startConfetti();
-    winText.textContent = "You win";
-  } else if (playerOption === "paper" && computerOption === "rock") {
-    playerScore++;
-    startConfetti();
-    winText.textContent = "You win";
-  } else {
-    comScore++;
-    winText.textContent = "Computer win";
-    stopConfetti();
-    removeConfetti();
-  }
-};
-
 // Displaying score, options etc
-const displayScoreAndOption = function (playerOption, computerOption) {
-  playerScoreEl.textContent = playerScore;
-  comScoreEl.textContent = comScore;
-  playerOptEl.textContent = playerOption;
-  comOptEl.textContent = computerOption;
-};
-
-// Computer selection otpion
-const computerSelection = function () {
-  const randInt = Math.floor(Math.random() * 3);
-  const comOpt = gameOptions[randInt];
-
-  computerIconsEl.forEach((opt) => {
-    if (comOpt === opt.dataset.comOption) {
-      opt.classList.add("selected");
-    }
-  });
-  return comOpt;
-};
+displayScoreAndOption();
 
 // EVENT LISTNERS
 playerIconContainer.addEventListener("click", function (e) {
@@ -104,7 +43,7 @@ playerIconContainer.addEventListener("click", function (e) {
     const { option: playerOption } = event.dataset;
     const computerOption = computerSelection();
     removeSelectedOptins();
-    playerSelectOption(playerOption, event);
+    playerSelectionOption(playerOption, event);
     winAndLose(playerOption, computerOption);
     displayScoreAndOption(playerOption, computerOption);
   }
