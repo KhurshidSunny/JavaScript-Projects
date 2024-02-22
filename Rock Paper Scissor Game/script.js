@@ -23,16 +23,10 @@ const comOptEl = document.querySelector(".com-option");
 const winText = document.querySelector(".win-text");
 const repeatBtn = document.querySelector(".repeat-btn");
 
-const gameOptions = ["rock", "paper", "scissor"];
-
-// FUNCTIONS AND HANDLERS
-
 // Removing all the options which are selected
 removeSelectedOptins();
-
 // reseting the game
 resetGame();
-
 // Displaying score, options etc
 displayScoreAndOption();
 
