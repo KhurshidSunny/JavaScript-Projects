@@ -16,3 +16,30 @@ body {
   background-repeat: no-repeat;
   background-position: left center;
 }
+.joke-btn {
+  padding: 20px 50px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 20px;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  background-color: #ff3482;
+  transition: transform 0.08s ease-in;
+}
+
+.joke-btn:hover {
+  filter: brightness(95%);
+}
+
+.joke-btn:active {
+  transform: scale(0.98);
+}
+
+/* media query for mobile or tablet */
+
+@media screen and (max-width: 600px) {
+  .container {
+    background-position: center center;
+    background-size: contain;
+  }
+}
