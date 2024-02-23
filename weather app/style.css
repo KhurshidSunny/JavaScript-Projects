@@ -9,7 +9,7 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
-
+  position: relative;
   background-color: rgb(41, 38, 38);
 }
 
@@ -115,4 +115,32 @@ body {
 
 .wind-speed-box .wind-speed {
   width: 130px;
+}
+
+.error-msg {
+  width: 30rem;
+  height: 4rem;
+  background-color: red;
+  position: absolute;
+  top: 10px;
+
+  border-radius: 12px;
+  color: white;
+  background-image: linear-gradient(to bottom right, #fdabdd, #374a5a);
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  padding: 0 15px;
+}
+
+.error-msg .remove-btn {
+  /* margin-left: auto; */
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
 }
