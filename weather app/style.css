@@ -54,13 +54,17 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 30px;
-  padding: 40px;
-  margin: 30px 0;
+  margin: 40px 0;
+}
+
+.weather-description {
+  font-size: 25px;
+  font-weight: 500;
+  margin-bottom: -20px;
 }
 
 .weather-info-box .weather-deg {
-  font-size: 70px;
+  font-size: 60px;
   font-weight: bold;
 }
 
@@ -70,7 +74,8 @@ body {
 }
 
 .weather-img {
-  width: 150px;
+  width: 130px;
+  margin: 0;
 }
 
 /* other details */
@@ -88,6 +93,7 @@ body {
 
 .humidity-box {
   display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 5px;
 }
@@ -102,6 +108,7 @@ body {
 
 .wind-speed-box {
   display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 5px;
 }
