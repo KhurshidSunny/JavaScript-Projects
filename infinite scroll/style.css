@@ -12,6 +12,7 @@ h1 {
   text-align: center;
   letter-spacing: 5px;
   margin-top: 20px;
+  font-size: 40px;
 }
 
 .loader {
@@ -37,8 +38,19 @@ h1 {
 
 .image-container img {
   width: 100%;
+  margin-top: 5px;
 }
 
 .hidden {
   display: none;
+}
+
+/* Mobile screen */
+@media screen and (max-width: 600px) {
+  h1 {
+    font-size: 30px;
+  }
+  .image-container {
+    margin: 10px;
+  }
 }
