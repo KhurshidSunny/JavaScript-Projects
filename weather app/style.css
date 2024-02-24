@@ -92,8 +92,10 @@ body {
 /* other details */
 .other-details {
   display: flex;
+  width: 100%;
   align-items: center;
   justify-content: space-between;
+  margin-top: -20px;
 }
 
 .other-details img {
@@ -125,7 +127,7 @@ body {
 }
 
 .wind-speed-box .wind-speed {
-  width: 130px;
+  /* width: 130px; */
 }
 
 .error-msg {
@@ -144,6 +146,32 @@ body {
   justify-content: center;
   font-size: 15px;
   padding: 0 15px;
+}
+
+/* timing of the city details */
+.timing-details {
+  width: 100%;
+  margin: 30px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+
+.time-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.time-box .img {
+  width: 50px;
+}
+
+.time-box .value {
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .error-msg .remove-btn {

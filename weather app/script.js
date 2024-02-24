@@ -8,6 +8,11 @@ const countryNameEl = document.querySelector(".place");
 const weatherDescEl = document.querySelector(".weather-description");
 const errorMsgEl = document.querySelector(".error-msg");
 const removeErrorMsgBtn = document.querySelector(".remove-btn");
+const maxTempEl = document.querySelector(".max-temp");
+const feelsLikeEl = document.querySelector(".feels-like");
+const surriseTimeEl = document.querySelector(".sunrise-time");
+const sunsetTimeEl = document.querySelector(".sunset-time");
+const seaLevelEl = document.querySelector(".sea-level");
 
 let cityName = "";
 const apiKey = `49a192416257fecea9d2a35770e556c0`;
@@ -47,17 +52,48 @@ const renderWeatherImg = function (code) {
   });
 };
 
+const convertToCelcius = (kelvin) => Math.floor(kelvin - 273);
+
+const convertToTime = function (timestamp) {
+  const date = new Date(timestamp * 1000);
+  let meridiem = "AM";
+  let hours = +date.getHours();
+  const minutes = +date.getMinutes();
+
+  if (hours >= 12) {
+    meridiem = "PM";
+    hours = hours % 12;
+  }
+  if (hours === 0) {
+    hours = 12;
+  }
+
+  return `${hours < 9 ? `0${hours}` : hours}:${
+    minutes < 9 ? `0${minutes}` : minutes
+  }`;
+};
+
 const displayDetails = async function (data, country) {
   const countryWeather = data.weather[0];
   const { description, icon } = countryWeather;
-  const { temp: kelvin, humidity } = data.main;
+  const { temp: kelvin, humidity, feels_like, temp_max, sea_level } = data.main;
+  const { sunrise, sunset } = data.sys;
+
   const { speed: windSpeed } = data.wind;
-  const celcius = Math.floor(kelvin - 273);
+  const celcius = convertToCelcius(kelvin);
+  const feelsLike = convertToCelcius(feels_like);
+  const maxTemp = convertToCelcius(temp_max);
+  maxTempEl.textContent = `max-temp ${maxTemp}°C`;
   temperatureEl.textContent = `${celcius}°C`;
+  feelsLikeEl.textContent = `feels-like ${feelsLike}°C`;
   countryNameEl.textContent = country[0].toUpperCase().concat(country.slice(1));
   humidityEl.textContent = `${humidity}%`;
   windSpeedEl.textContent = `${windSpeed} km/h`;
   weatherDescEl.textContent = description;
+
+  surriseTimeEl.textContent = `${convertToTime(sunrise)} AM`;
+  sunsetTimeEl.textContent = `${convertToTime(sunset)} PM`;
+  seaLevelEl.textContent = `${sea_level}(mb)`;
 
   const imgUrl = await renderWeatherImg(icon);
   weatherImgEl.src = imgUrl;
