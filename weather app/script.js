@@ -93,7 +93,7 @@ const displayDetails = async function (data, country) {
 
   surriseTimeEl.textContent = `${convertToTime(sunrise)} AM`;
   sunsetTimeEl.textContent = `${convertToTime(sunset)} PM`;
-  seaLevelEl.textContent = `${sea_level}(mb)`;
+  seaLevelEl.textContent = `${sea_level ? `${sea_level}(mb)` : "no sea"}`;
 
   const imgUrl = await renderWeatherImg(icon);
   weatherImgEl.src = imgUrl;
@@ -106,7 +106,7 @@ const renderWeatherDetails = function (data, country) {
 const getJSON = async function (url) {
   try {
     const response = await fetch(url);
-    if (!response.ok) throw new Error("The country can not be found");
+    if (!response.ok) throw new Error("The City can not be found");
     const data = await response.json();
     return data;
   } catch (err) {
@@ -127,7 +127,6 @@ const getPosition = async function (city) {
 const getWeatherData = async function (city) {
   try {
     const pos = await getPosition(city);
-    console.log(pos);
     const { lon, lat } = pos.coord;
 
     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`;
