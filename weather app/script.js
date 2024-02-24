@@ -9,7 +9,8 @@ const weatherDescEl = document.querySelector(".weather-description");
 const errorMsgEl = document.querySelector(".error-msg");
 const removeErrorMsgBtn = document.querySelector(".remove-btn");
 
-let countryName = "";
+let cityName = "";
+const apiKey = `49a192416257fecea9d2a35770e556c0`;
 
 const weatherCode = [
   "01n",
@@ -69,7 +70,6 @@ const renderWeatherDetails = function (data, country) {
 const getJSON = async function (url) {
   try {
     const response = await fetch(url);
-    console.log(response);
     if (!response.ok) throw new Error("The country can not be found");
     const data = await response.json();
     return data;
@@ -79,39 +79,39 @@ const getJSON = async function (url) {
   }
 };
 
-const getPosition = async function (country) {
+const getPosition = async function (city) {
   try {
     const data = await getJSON(
-      `https://restcountries.com/v3.1/name/${country}`
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`
     );
-    return data[0];
+    return data;
   } catch (err) {}
 };
 
-const getWeatherData = async function (country) {
+const getWeatherData = async function (city) {
   try {
-    const pos = await getPosition(country);
+    const pos = await getPosition(city);
+    console.log(pos);
+    const { lon, lat } = pos.coord;
 
-    const [lat, lng] = pos.latlng;
-    const apiKey = `49a192416257fecea9d2a35770e556c0`;
-    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${apiKey}`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`;
 
     const data = await getJSON(url);
-    renderWeatherDetails(data, country);
+    renderWeatherDetails(data, city);
   } catch (err) {}
 };
 
 ////////////////////// EVENTS //////////////
 searchPlaceEl.addEventListener("input", function (e) {
-  countryName = searchPlaceEl.value;
+  cityName = searchPlaceEl.value;
 });
 
 searchBtn.addEventListener("click", function () {
-  getWeatherData(countryName);
+  getWeatherData(cityName);
 });
 
 window.addEventListener("keydown", function (e) {
-  if (e.key === "Enter") getWeatherData(countryName);
+  if (e.key === "Enter") getWeatherData(cityName);
 });
 
 removeErrorMsgBtn.addEventListener("click", function () {
@@ -119,4 +119,4 @@ removeErrorMsgBtn.addEventListener("click", function () {
 });
 
 // DEFAULT COUNTRY WEATHER
-getWeatherData("France");
+getWeatherData("kabul");

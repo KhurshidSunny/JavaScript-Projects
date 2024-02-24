@@ -57,6 +57,17 @@ body {
   margin: 40px 0;
 }
 
+.temp {
+  display: flex;
+  align-items: center;
+  width: 25rem;
+  justify-content: space-between;
+}
+.temp .max-temp,
+.feels-like {
+  font-size: 18px;
+}
+
 .weather-description {
   font-size: 25px;
   font-weight: 500;
