@@ -45,6 +45,22 @@ h1 {
   display: none;
 }
 
+.error-msg {
+  width: 25rem;
+  background-color: whitesmoke;
+  position: fixed;
+  color: rgb(219, 46, 46);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  border: 1px solid rgb(218, 209, 209);
+  box-shadow: 4px 3px 2px rgba(0, 0, 0, 0.3),
+    inset 4px 3px 2px rgba(0, 0, 0, 0.3);
+}
+
 /* Mobile screen */
 @media screen and (max-width: 600px) {
   h1 {

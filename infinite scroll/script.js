@@ -1,5 +1,6 @@
 const imgContainer = document.querySelector(".image-container");
 const loader = document.querySelector(".loader");
+const errorMsgEl = document.querySelector(".error-msg");
 
 const count = 5;
 let ready = false;
@@ -7,8 +8,14 @@ let totalImage;
 let loadedImages = 0;
 let photosArray = [];
 
+setTimeout(function () {
+  loader.classList.add("hidden");
+  errorMsgEl.classList.remove("hidden");
+}, 8 * 1000);
+
 const imageLoaded = function () {
   loadedImages = loadedImages + 1;
+
   if (loadedImages === totalImage) {
     ready = true;
     loader.classList.add("hidden");
