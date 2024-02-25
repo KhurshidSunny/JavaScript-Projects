@@ -41,10 +41,6 @@ h1 {
   margin-top: 5px;
 }
 
-.hidden {
-  display: none;
-}
-
 .error-msg {
   width: 25rem;
   background-color: whitesmoke;
@@ -54,11 +50,34 @@ h1 {
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 10px;
-  text-align: center;
+  display: flex;
+  align-items: center;
+
+  justify-content: space-evenly;
   border-radius: 5px;
   border: 1px solid rgb(218, 209, 209);
   box-shadow: 4px 3px 2px rgba(0, 0, 0, 0.3),
     inset 4px 3px 2px rgba(0, 0, 0, 0.3);
+}
+.error-msg p {
+  margin-left: 20px;
+}
+
+.remove-error-btn {
+  width: 25px;
+  height: 25px;
+  border: 1px solid rgb(218, 209, 209);
+  border-radius: 2px;
+  margin-left: auto;
+  cursor: pointer;
+}
+.remove-error-btn:active {
+  transform: scale(0.92);
+  filter: brightness(90%);
+}
+
+.hidden {
+  display: none;
 }
 
 /* Mobile screen */

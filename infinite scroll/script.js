@@ -1,17 +1,28 @@
 const imgContainer = document.querySelector(".image-container");
 const loader = document.querySelector(".loader");
 const errorMsgEl = document.querySelector(".error-msg");
+const removeErrorBtnEl = document.querySelector(".remove-error-btn");
 
 const count = 5;
 let ready = false;
 let totalImage;
 let loadedImages = 0;
+let seconds = 0;
 let photosArray = [];
 
-setTimeout(function () {
-  loader.classList.add("hidden");
-  errorMsgEl.classList.remove("hidden");
-}, 8 * 1000);
+// Timeout for data fetching
+const loadTime = function () {
+  const timeout = setInterval(function () {
+    seconds++;
+    if (seconds >= 8) {
+      loader.classList.add("hidden");
+      errorMsgEl.classList.remove("hidden");
+      seconds = 0;
+      clearInterval(timeout);
+    }
+  }, 1 * 1000);
+};
+if (!photosArray.length) loadTime();
 
 const imageLoaded = function () {
   loadedImages = loadedImages + 1;
@@ -20,6 +31,7 @@ const imageLoaded = function () {
     ready = true;
     loader.classList.add("hidden");
     console.log("ready", ready);
+    errorMsgEl.classList.add("hidden");
   }
 };
 
@@ -73,4 +85,10 @@ window.addEventListener("scroll", function () {
   ) {
     getPhotos();
   }
+});
+removeErrorBtnEl.addEventListener("click", function () {
+  errorMsgEl.classList.add("hidden");
+  getPhotos();
+  loader.classList.remove("hidden");
+  if (!photosArray.length) loadTime();
 });
