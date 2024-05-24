@@ -8,7 +8,7 @@ DOM Manipulation, arrays, objects, string and arrays method, ES6 features, Async
 - 🏦 Bankist (Banking Operations): https://bankest-app.netlify.app
 - ⏳ 2025 Countdown: https://countdown2-2025.netlify.app
 - 🎯 Guess My Number Game: https://guess-my-number-game2.netlify.app
--🌗 Light & Dark Mode: https://shiny-vacherin-50dc4d.netlify.app
+- 🌗 Light & Dark Mode: https://shiny-vacherin-50dc4d.netlify.app
 - 🔐 Random Password Generator: https://password-generator-app2.netlify.app
 - 📚 Quiz App: https://quiz-app1-js.netlify.app
 - ✂️ Rock Paper Scissors Game: https://rock-paper-scissor-game2.netlify.app
